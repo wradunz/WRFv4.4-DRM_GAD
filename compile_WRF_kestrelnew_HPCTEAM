@@ -1,0 +1,28 @@
+# NREL HPC 2
+module purge
+module load wrf/4.2.2-intel 
+export NETCDF=/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf
+
+export WRFIO_NCD_LARGE_FILE_SUPPORT=1
+export NETCDF_classic=1
+#export WRF_DIR=/home/wradunz/WRF-LES-GAD/framework/WRF
+export WRF_DIR=/home/wradunz/WRFv4.4-DRM_GAD_william
+
+############################ WRF 4.2.1 #################################
+
+# compile real
+cd $WRF_DIR
+./clean
+./clean -a
+./configure # 67, 1
+./compile em_real 2>&1 >& compile_real.log &
+rm -rf main_real
+cp -r main main_real
+
+# compile ideal
+cd $WRF_DIR
+./clean
+./clean -a
+# ./configure # 67, 1
+cp /nopt/nrel/apps/software/wrf/intel/WRF-4.2.2/configure.wrf .
+./compile em_les >& compile_em_les.log &

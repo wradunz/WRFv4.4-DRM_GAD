@@ -1,0 +1,1324 @@
+Neither WRF_EM_CORE nor WRF_PLUS_CORE
+        are explicitly specified in shell environment.... 
+ 
+============================================================================================== 
+ 
+V4.4
+git commit b92e2eae819c73d964c0974e5d054b2d2e4237a1 16 files changed, 112 deletions(-)
+ 
+Compiling: WRF_EM_CORE  
+WRFIO_NCD_LARGE_FILE_SUPPORT=1
+ 
+Linux kl4 4.18.0-477.10.1.el8_8.x86_64 #1 SMP Wed Apr 5 13:35:01 EDT 2023 x86_64 x86_64 x86_64 GNU/Linux
+ 
+Intel(R) Fortran Intel(R) 64 Compiler Classic for applications running on Intel(R) 64, Version 2021.10.0 Build 20230609_000000
+Copyright (C) 1985-2023 Intel Corporation.  All rights reserved.
+
+GNU ld (GNU Binutils) 2.42
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: /nopt/nrel/apps/cpu_stack/compilers/06-24/linux-rhel8-sapphirerapids/gcc-12.3.0/intel-oneapi-compilers-2023.2.0-52ic5lt6egfvpfkrr2lxy2lvujpy4ay4/compiler/2023.2.0/linux/bin/intel64/../../compiler/lib/intel64_lin/for_main.o: in function `main':
+for_main.c:(.text+0x19): undefined reference to `MAIN__'
+ 
+============================================================================================== 
+ 
+setting parallel make -j 2
+ 
+============================================================================================== 
+ 
+The following indicate the compilers selected to build the WRF system
+ 
+Serial Fortran compiler (mostly for tool generation):
+which SFC
+/nopt/nrel/apps/cpu_stack/compilers/06-24/linux-rhel8-sapphirerapids/gcc-12.3.0/intel-oneapi-compilers-2023.2.0-52ic5lt6egfvpfkrr2lxy2lvujpy4ay4/compiler/2023.2.0/linux/bin/intel64/ifort
+ 
+Serial C compiler (mostly for tool generation):
+which SCC
+/nopt/nrel/apps/cpu_stack/compilers/06-24/linux-rhel8-sapphirerapids/gcc-12.3.0/intel-oneapi-compilers-2023.2.0-52ic5lt6egfvpfkrr2lxy2lvujpy4ay4/compiler/2023.2.0/linux/bin/intel64/icc
+ 
+Fortran compiler for the model source code:
+which FC
+/opt/cray/pe/mpich/8.1.28/ofi/intel/2022.1/bin/mpif90
+Will use 'time' to report timing information
+ 
+C compiler for the model source code:
+which CC
+/opt/cray/pe/mpich/8.1.28/ofi/intel/2022.1/bin/mpicc
+ 
+============================================================================================== 
+ 
+make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " ext
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd frame ; make -i -r externals ) ; \
+else \
+  ( cd frame ; make -i -r PLUSFLAG="-DWRFPLUS=1" externals ) ; \
+fi
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/frame'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 ; \
+          make -j 2 FC="ifort -real-size `expr 8 \* 4` -i4  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " RANLIB="ranlib" \
+          CPP="/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I. -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0 -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90'
+make[3]: Nothing to be done for 'default'.
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf ; \
+          make -j 2 NETCDFPATH="/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          CC="icc" CFLAGS="-w -O1 -ip  -DDM_PARALLEL -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" \
+          FC="ifort -real-size `expr 8 \* 4` -i4 -qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_pnetcdf ; \
+          make -j 2 NETCDFPATH="/nopt/nrel/apps/software/wrf/intel/installs/pnetcdf" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0" \
+          FC="time mpif90 -f90=ifort -real-size `expr 8 \* 4` -i4 -qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_pnetcdf'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_pnetcdf'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/ioapi_share ; \
+          make -i -r NATIVE_RWORDSIZE="4" RWORDSIZE="4" AR="ar" ARFLAGS="ru" )
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/ioapi_share'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/ioapi_share'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib_share ; \
+          make -j 2 CC="icc" CFLAGS="-w -O1 -ip  -DDM_PARALLEL -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="ifort -real-size `expr 8 \* 4` -i4 -I.  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" archive) 
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib_share'
+make[4]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib_share'
+ar ru ./libio_grib_share.a io_grib_share.o get_region_center.o gridnav.o open_file.o
+ranlib ./libio_grib_share.a
+make[4]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib_share'
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib_share'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1 ; \
+          make -j 2 CC="icc" CFLAGS="-w -O1 -ip  -DDM_PARALLEL -DLANDREAD_STUB=1 -DMAX_HISTORY=25 -DNMM_CORE=0" RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="ifort -real-size `expr 8 \* 4` -i4 -I.  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" archive)
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1'
+        Doing make archive on library subdirectory MEL_grib1
+make[4]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/MEL_grib1'
+make[5]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/MEL_grib1'
+ar ru ../libio_grib1.a FTP_getfile.o apply_bitmap.o display_gribhdr.o gbyte.o grib_dec.o grib_enc.o grib_seek.o gribgetbds.o gribgetbms.o gribgetgds.o gribgetpds.o gribhdr2file.o gribputbds.o gribputgds.o gribputpds.o hdr_print.o init_dec_struct.o init_enc_struct.o init_gribhdr.o init_struct.o ld_dec_lookup.o ld_enc_input.o ld_enc_lookup.o ld_grib_origctrs.o make_default_grbfn.o make_grib_log.o map_lvl.o map_parm.o pack_spatial.o prt_inp_struct.o upd_child_errmsg.o prt_badmsg.o swap.o grib_uthin.o set_bytes.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/MEL_grib1'
+make[4]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/MEL_grib1'
+        Doing make archive on library subdirectory grib1_util
+make[4]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/grib1_util'
+make[5]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/grib1_util'
+ar ru ../libio_grib1.a alloc_2d.o read_grib.o write_grib.o
+ranlib ../libio_grib1.a
+make[5]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/grib1_util'
+make[4]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/grib1_util'
+        Doing make archive on library subdirectory WGRIB
+make[4]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/WGRIB'
+make[4]: Nothing to be done for 'archive'.
+make[4]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/WGRIB'
+make[4]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1'
+ar ru ./libio_grib1.a grib1_routines.o gribmap.o io_grib1.o trim.o
+ranlib ./libio_grib1.a
+make[4]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1'
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int ; \
+          make -j 2 CC="mpicc -cc=icc -DFSEEKO64_OK " CFLAGS_LOCAL="-w -O1 -ip " RM="rm -f" RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc" \
+          FC="time mpif90 -f90=ifort -real-size `expr 8 \* 4` -i4  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto" FGREP="fgrep -iq" \
+          TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" AR="ar" ARFLAGS="ru" ARCHFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0" all )
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int'
+make[3]: Nothing to be done for 'all'.
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int'
+( cd /home/wradunz/WRFv4.4-DRM_GAD_william/external/fftpack/fftpack5 ; \
+          make -j 2 FC="ifort" FFLAGS="-real-size `expr 8 \* 4` -i4  -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " RANLIB="ranlib" AR="ar" \
+          ARFLAGS="ru" CPP="/lib/cpp -P -nostdinc" CPPFLAGS="-DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT " RM="rm -f" )
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/fftpack/fftpack5'
+ar ru libfftpack.a c1f2kb.o  cfft1b.o  cmf3kf.o  cosqb1.o  costmi.o   dcosq1f.o  dfftb1.o   mradb2.o  mrfti1.o  r1fgkf.o     rfft2i.o  sinqmi.o  z1f2kf.o  zfft1f.o  zmf4kb.o c1f2kf.o  cfft1f.o  cmf4kb.o  cosqf1.o  d1f2kb.o   dcosq1i.o  dfftf1.o   mradb3.o  msntb1.o  r4_factor.o  rfftb1.o  sint1b.o  z1f3kb.o  zfft1i.o  zmf4kf.o c1f3kb.o  cfft1i.o  cmf4kf.o  cosqmb.o  d1f2kf.o   dcosqb1.o  dffti1.o   mradb4.o  msntf1.o  r4_mcfti1.o  rfftf1.o  sint1f.o  z1f3kf.o  zfft2b.o  zmf5kb.o c1f3kf.o  cfft2b.o  cmf5kb.o  cosqmf.o  d1f3kb.o   dcosqf1.o  dsint1b.o  mradb5.o  r1f2kb.o  r4_tables.o  rffti1.o  sint1i.o  z1f4kb.o  zfft2f.o  zmf5kf.o c1f4kb.o  cfft2f.o  cmf5kf.o  cosqmi.o  d1f3kf.o   dcost1b.o  dsint1f.o  mradbg.o  r1f2kf.o  r8_factor.o  rfftmb.o  sintb1.o  z1f4kf.o  zfft2i.o  zmfgkb.o c1f4kf.o  cfft2i.o  cmfgkb.o  cost1b.o  d1f4kb.o   dcost1f.o  dsint1i.o  mradf2.o  r1f3kb.o  r8_mcfti1.o  rfftmf.o  sintf1.o  z1f5kb.o  zfftmb.o  zmfgkf.o c1f5kb.o  cfftmb.o  cmfgkf.o  cost1f.o  d1f4kf.o   dcost1i.o  dsintb1.o  mradf3.o  r1f3kf.o  r8_tables.o  rfftmi.o  sintmb.o  z1f5kf.o  zfftmf.o  zmfm1b.o c1f5kf.o  cfftmf.o  cmfm1b.o  cost1i.o  d1f5kb.o   dcostb1.o  dsintf1.o  mradf4.o  r1f4kb.o  rfft1b.o     sinq1b.o  sintmf.o  z1fgkb.o  zfftmi.o  zmfm1f.o c1fgkb.o  cfftmi.o  cmfm1f.o  costb1.o  d1f5kf.o   dcostf1.o  mcsqb1.o   mradf5.o  r1f4kf.o  rfft1f.o     sinq1f.o  sintmi.o  z1fgkf.o  zmf2kb.o c1fgkf.o  cmf2kb.o  cosq1b.o  costf1.o  d1fgkb.o   dfft1b.o   mcsqf1.o   mradfg.o  r1f5kb.o  rfft1i.o     sinq1i.o  xercon.o  z1fm1b.o  zmf2kf.o c1fm1b.o  cmf2kf.o  cosq1f.o  costmb.o  d1fgkf.o   dfft1f.o   mcstb1.o   mrftb1.o  r1f5kf.o  rfft2b.o     sinqmb.o  xerfft.o  z1fm1f.o  zmf3kb.o c1fm1f.o  cmf3kb.o  cosq1i.o  costmf.o  dcosq1b.o  dfft1i.o   mcstf1.o   mrftf1.o  r1fgkb.o  rfft2f.o     sinqmf.o  z1f2kb.o  zfft1b.o  zmf3kf.o 
+ranlib libfftpack.a
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/fftpack/fftpack5'
+( if [ ! -e /home/wradunz/WRFv4.4-DRM_GAD_william/tools/gen_comms.c ] ; then \
+          /bin/cp /home/wradunz/WRFv4.4-DRM_GAD_william/tools/gen_comms_warning /home/wradunz/WRFv4.4-DRM_GAD_william/tools/gen_comms.c ; \
+          cat /home/wradunz/WRFv4.4-DRM_GAD_william/external/RSL_LITE/gen_comms.c >> /home/wradunz/WRFv4.4-DRM_GAD_william/tools/gen_comms.c ; fi )
+( if [ ! -e module_dm.F ] ; then /bin/cp module_dm_warning module_dm.F ; \
+          cat /home/wradunz/WRFv4.4-DRM_GAD_william/external/RSL_LITE/module_dm.F >> module_dm.F ; fi )
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/frame'
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " toolsdir
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+--------------------------------------
+if [ 0 -eq 0 ] ; then \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="icc  -DIWORDSIZE=4 -DMAX_HISTORY=25" ) ; \
+else \
+  ( cd tools ; make -i -r CC_TOOLS_CFLAGS="-DNMM_CORE=0" CC_TOOLS="icc  -DIWORDSIZE=4 -DMAX_HISTORY=25 -DWRFPLUS=1" ) ; \
+fi
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/tools'
+make[2]: 'registry' is up to date.
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/tools'
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+/bin/rm -f main/libwrflib.a main/libwrflib.lib
+make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " framework
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+--------------------------------------
+( cd frame ; make -i -r -j 2 LLIST="" framework ; \
+          cd ../external/io_netcdf ; \
+          make -i -r NETCDFPATH="/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf" \
+               FC="time mpif90 -f90=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  -qopenmp -fpp -auto" RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="-qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time" \
+               LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf; \
+          cd ../io_netcdf ; \
+          make -i -r NETCDFPATH="/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf" \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  -qopenmp -fpp -auto" RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="-qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_netcdfpar ; \
+           make -i -r NETCDFPARPATH="/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf" \
+               FC="time mpif90 -f90=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  -qopenmp -fpp -auto" RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="-qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time" \
+               LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf; \
+          cd ../io_netcdfpar ; \
+           make -i -r NETCDFPARPATH="/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf" \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  -qopenmp -fpp -auto" RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="-qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_pio ; \
+          echo SKIPPING PIO BUILD make -i -r NETCDFPATH="/nopt/nrel/apps/software/wrf/intel/installs/pnetcdf" \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  -qopenmp -fpp -auto" RANLIB="ranlib" \
+               CPP="/lib/cpp -P -nostdinc" LDFLAGS="-qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip  " TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time" \
+       LIB_LOCAL="" \
+               ESMF_MOD_DEPENDENCE="/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR"; \
+          cd ../io_int ; \
+          make -i -r SFC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  " \
+               FC="ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size `expr 8 \* 4` -i4  -qopenmp -fpp -auto" \
+               RANLIB="ranlib" CPP="/lib/cpp -P -nostdinc -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" DM_FC="mpif90 -f90=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian  "\
+               TRADFLAG="-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT" ESMF_IO_LIB_EXT="-L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time" \
+               ESMF_MOD_DEPENDENCE="/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90/module_utility.o" AR="INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" diffwrf ; \
+          cd ../../frame )
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/frame'
+ar ru ../main/libwrflib.a module_driver_constants.o module_domain_type.o module_streams.o module_domain.o  module_integrate.o module_timing.o module_configure.o module_tiles.o module_machine.o module_nesting.o module_wrf_error.o module_state_description.o module_sm.o module_io.o module_comm_dm.o module_comm_dm_0.o module_comm_dm_1.o module_comm_dm_2.o module_comm_dm_3.o module_comm_dm_4.o module_comm_nesting_dm.o module_dm.o module_quilt_outbuf_ops.o module_io_quilt.o module_cpl.o module_cpl_oasis3.o module_clear_halos.o wrf_num_bytes_between.o wrf_shutdown.o wrf_debug.o libmassv.o collect_on_comm.o hires_timer.o clog.o nl_get_0_routines.o nl_get_1_routines.o nl_get_2_routines.o nl_get_3_routines.o nl_get_4_routines.o nl_get_5_routines.o nl_get_6_routines.o nl_get_7_routines.o nl_set_0_routines.o nl_set_1_routines.o nl_set_2_routines.o nl_set_3_routines.o nl_set_4_routines.o nl_set_5_routines.o nl_set_6_routines.o nl_set_7_routines.o  module_alloc_space_0.o module_alloc_space_1.o module_alloc_space_2.o module_alloc_space_3.o module_alloc_space_4.o module_alloc_space_5.o module_alloc_space_6.o module_alloc_space_7.o module_alloc_space_8.o module_alloc_space_9.o
+ar: creating ../main/libwrflib.a
+ranlib ../main/libwrflib.a
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/frame'
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf'
+make[2]: 'diffwrf' is up to date.
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf'
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf'
+make[2]: Nothing to be done for 'all'.
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf'
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdfpar'
+x=`echo "time mpif90 -f90=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4  -qopenmp -fpp -auto" | awk '{print $1}'` ; export x ; \
+if [ $x = "gfortran" ] ; then \
+           echo removing external declaration of iargc for gfortran ; \
+   /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_NETCDFPAR -D_NETCDF4 -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include -I../ioapi_share diffwrf.F90 | sed '/integer *, *external.*iargc/d' > diffwrf.f ;\
+        else \
+   /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_NETCDFPAR -D_NETCDF4 -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include -I../ioapi_share diffwrf.F90 > diffwrf.f ; \
+        fi
+time mpif90 -f90=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4  -qopenmp -fpp -auto -c  -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include -I../ioapi_share diffwrf.f
+0.25user 0.13system 0:00.42elapsed 91%CPU (0avgtext+0avgdata 103304maxresident)k
+0inputs+824outputs (0major+32201minor)pagefaults 0swaps
+diffwrf io_netcdfpar is being built now. 
+ifort: error #10236: File not found:  'wrf_io.o'
+ifort: error #10236: File not found:  'field_routines.o'
+
+real	0m0.182s
+user	0m0.025s
+sys	0m0.152s
+make[2]: [Makefile:45: diffwrf] Error 1 (ignored)
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdfpar'
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdfpar'
+grep nf_format_64bit /nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include/netcdf.inc ;\
+                        a=$? ; export a ; \
+		if [ $a -a "$WRFIO_NCD_LARGE_FILE_SUPPORT" = "1" ] ; then \
+                          /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_NETCDFPAR -D_NETCDF4 -DWRFIO_NCD_LARGE_FILE_SUPPORT -I../ioapi_share wrf_io.F90 | m4 -Uinclude -Uindex -Ulen - > wrf_io.f ; \
+                        else \
+                          /lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_NETCDFPAR -D_NETCDF4 -I../ioapi_share wrf_io.F90 | m4 -Uinclude -Uindex -Ulen - > wrf_io.f ; \
+                        fi
+      integer nf_format_64bit
+      integer nf_format_64bit_offset
+      integer nf_format_64bit_data
+      parameter (nf_format_64bit = 2)
+      parameter (nf_format_64bit_offset = nf_format_64bit)
+      parameter (nf_format_64bit_data = 5)
+      parameter (nf_format_cdf5 = nf_format_64bit_data)
+ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4  -qopenmp -fpp -auto -o wrf_io.o  -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include -I../ioapi_share -c wrf_io.f
+wrf_io.f(117): error #5102: Cannot open include file 'mpif.h'
+  include 'mpif.h'
+----------^
+wrf_io.f(1203): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines 
+------^
+wrf_io.f(1517): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(1538): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(1566): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(1705): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(1750): error #6404: This name does not have a type, and must have an explicit type.   [MPI_INFO_NULL]
+  stat = NF_OPEN_PAR(FileName, open_mode, comm, MPI_INFO_NULL, DH%NCID)
+------------------------------------------------^
+wrf_io.f(1847): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(1894): error #6404: This name does not have a type, and must have an explicit type.   [MPI_INFO_NULL]
+  stat = NF_CREATE_PAR(FileName, create_mode, comm, MPI_INFO_NULL, DH%NCID)
+----------------------------------------------------^
+wrf_io.f(1965): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(1981): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2028): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2078): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2125): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2175): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2273): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2332): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2356): error #6404: This name does not have a type, and must have an explicit type.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2356): error #6341: A logical data type is required in this context.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2485): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2509): error #6404: This name does not have a type, and must have an explicit type.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2509): error #6341: A logical data type is required in this context.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2638): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2662): error #6404: This name does not have a type, and must have an explicit type.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2662): error #6341: A logical data type is required in this context.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2791): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2815): error #6404: This name does not have a type, and must have an explicit type.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2815): error #6341: A logical data type is required in this context.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+wrf_io.f(2944): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+wrf_io.f(2968): error #6404: This name does not have a type, and must have an explicit type.   [NCDPAR_OK_TO_GET_DOM_TI]
+IF ( ncdpar_ok_to_get_dom_ti( DataHandle ) ) THEN
+-----^
+/tmp/ifort4AhdRQ.i(46286): catastrophic error: Too many errors, exiting
+compilation aborted for wrf_io.f (code 1)
+make[2]: [Makefile:28: wrf_io.o] Error 1 (ignored)
+/lib/cpp -P -nostdinc -P -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_NETCDFPAR -D_NETCDF4 -I../ioapi_share field_routines.F90 > field_routines.f
+ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4  -qopenmp -fpp -auto -o field_routines.o  -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include -I../ioapi_share -c field_routines.f
+field_routines.f(38): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+field_routines.f(88): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+field_routines.f(117): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+field_routines.f(146): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [EXT_NCDPAR_SUPPORT_ROUTINES]
+  use ext_ncdpar_support_routines
+------^
+compilation aborted for field_routines.f (code 1)
+make[2]: [Makefile:66: field_routines.o] Error 1 (ignored)
+/bin/rm -f libwrfio_nfpar.a
+if [ "INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR" != "lib.exe" ] ; then \
+                          INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR cr libwrfio_nfpar.a wrf_io.o field_routines.o module_wrfsi_static.o ; \
+                        else \
+                          INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR /out:libwrfio_nfpar.a wrf_io.o field_routines.o module_wrfsi_static.o ; \
+                        fi
+/bin/sh: line 1: INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR: command not found
+make[2]: [Makefile:19: libwrfio_nfpar.a] Error 127 (ignored)
+ranlib libwrfio_nfpar.a
+ranlib: 'libwrfio_nfpar.a': No such file
+make[2]: [Makefile:20: libwrfio_nfpar.a] Error 1 (ignored)
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdfpar'
+SKIPPING PIO BUILD make -i -r NETCDFPATH=/nopt/nrel/apps/software/wrf/intel/installs/pnetcdf FC=ifort -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -real-size 32 -i4  -qopenmp -fpp -auto RANLIB=ranlib CPP=/lib/cpp -P -nostdinc LDFLAGS=-qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip   TRADFLAG=-traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT ESMF_IO_LIB_EXT=-L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time LIB_LOCAL= ESMF_MOD_DEPENDENCE=/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90/module_utility.o AR=INTERNAL_BUILD_ERROR_SHOULD_NOT_NEED_AR
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int'
+make[2]: 'diffwrf' is up to date.
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int'
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " shared
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+--------------------------------------
+if [ "`echo -j 2 | sed -e 's/-j//g' -e 's/ \+//g'`" -gt "6" ] ; then \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 6 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 6 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+else \
+  if [ 0 -eq 0 ]   ; then \
+   ( cd share ; make -i -r -j 2 PERTMOD=" " ) ;  \
+  else \
+   ( cd share ; make -i -r -j 2 PERTMOD="../dyn_em/module_bc_em.o ../wrftladj/mediation_pertmod_io.o" ) ;  \
+  fi \
+fi
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/share'
+if [ 0 -eq 1 ] ; then \
+                  make -i -r nmm_contrib                                      ; \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_chem_share.o module_check_a_mundo.o module_HLaw.o module_ctrans_aqchem.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_string_tools.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o    ; \
+                  else                                                         \
+                  ar ru ../main/libwrflib.a module_model_constants.o module_bc_time_utilities.o module_get_file_names.o module_compute_geop.o module_chem_share.o module_check_a_mundo.o module_HLaw.o module_ctrans_aqchem.o module_random.o module_llxy.o module_interp_nmm.o module_interp_store.o module_string_tools.o module_MPP.o  module_date_time.o module_bc.o module_io_wrf.o module_soil_pre.o  module_io_domain.o               module_optional_input.o          solve_interface.o mediation_interp_domain.o mediation_force_domain.o mediation_feedback_domain.o start_domain.o init_modules.o set_timekeeping.o interp_fcn.o sint.o wrf_ext_write_field.o wrf_ext_read_field.o  wrf_tsin.o landread.o track_driver.o track_input.o module_trajectory.o bobrand.o wrf_timeseries.o track_driver.o wrf_fddaobs_in.o mediation_nest_move.o setfeenv.o input_wrf.o output_wrf.o wrf_bdyout.o wrf_bdyin.o dfi.o  mediation_integrate.o mediation_wrfmain.o              ; \
+                fi
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/share'
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " physics
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+--------------------------------------
+if [ 0  -eq 0 ] ; then \
+	( cd phys ; make -i -r submodules ; make -i -r CF2=" " ) ; \
+	if [  -eq 1 ] ; then \
+		@ echo '----------- make cmaq ----------------' ; \
+		( rm -f main/libcmaqlib.a; cd cmaq ; make -i -r -f Makefile.twoway ) ; \
+	fi \
+else \
+	( cd phys ; make -i -r submodules ; make -i -r CF2="../chem/module_data_mosaic_asect.o" ) ; \
+fi
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/phys'
+No action required for NoahMP submodule
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/phys'
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/phys'
+make -i -r -j 2 non_nmm ; \
+ar ru ../main/libwrflib.a module_bep_bem_helper.o complex_number_module.o module_cam_shr_kind_mod.o module_cam_support.o module_cam_shr_const_mod.o module_cam_physconst.o module_cam_cldwat.o module_cam_wv_saturation.o module_cam_esinti.o module_cam_gffgch.o module_cam_error_function.o module_cam_constituents.o module_cam_trb_mtn_stress.o module_cam_molec_diff.o module_cam_upper_bc.o module_cam_bl_diffusion_solver.o module_cam_bl_eddy_diff.o module_cam_mp_microp_aero.o module_cam_mp_cldwat2m_micro.o module_cam_mp_ndrop.o module_cam_mp_modal_aero_initialize_data_phys.o module_cam_mp_radconstants.o module_cam_mp_conv_water.o module_cam_mp_qneg3.o module_data_cam_mam_aero.o module_data_cam_mam_asect.o module_cam_infnan.o  module_bl_ysu.o module_bl_shinhong.o module_bl_mrf.o module_bl_gfs.o module_bl_gfsedmf.o module_bl_myjpbl.o module_bl_qnsepbl.o module_bl_acm.o module_bl_mynn.o module_bl_fogdes.o module_bl_gwdo.o module_bl_gwdo_gsl.o module_bl_myjurb.o module_bl_boulac.o module_checkerror.o module_bl_camuwpbl_driver.o module_bl_mfshconvpbl.o module_bl_eepsilon.o module_shcu_camuwshcu_driver.o module_shcu_camuwshcu.o module_shcu_deng.o module_shcu_grims.o module_shcu_nscv.o module_cu_camzm_driver.o module_cu_camzm.o module_bl_temf.o module_bl_gbmpbl.o module_cu_g3.o module_cu_kf.o module_cu_bmj.o module_cu_kfeta.o module_cu_mskf.o module_cu_tiedtke.o module_cu_ntiedtke.o module_cu_gd.o module_cu_gf_ctrans.o module_cu_gf_wrfdrv.o module_cu_gf_deep.o module_cu_gf_sh.o module_cu_ksas.o module_cu_nsas.o module_cu_sas.o module_gocart_coupling.o module_cu_scalesas.o module_cu_osas.o module_cu_kfcup.o module_madwrf.o module_mp_radar.o module_mp_kessler.o module_mp_lin.o module_mp_sbu_ylin.o module_mp_wsm3.o module_mp_wsm5.o module_mp_wsm6.o module_mp_wsm7.o module_mp_etanew.o module_mp_fer_hires.o module_mp_thompson.o module_fire_emis.o module_mp_SBM_polar_radar.o module_mp_full_sbm.o module_mp_fast_sbm.o module_ltng_lpi.o module_mp_gsfcgce.o module_mp_gsfcgce_4ice_nuwrf.o module_mp_morr_two_moment.o module_mp_p3.o module_mp_jensen_ishmael.o module_mp_morr_two_moment_aero.o module_mp_milbrandt2mom.o module_mp_nssl_2mom.o module_mp_wdm5.o module_mp_wdm6.o module_mp_wdm7.o module_mp_ntu.o module_mp_cammgmp_driver.o module_ra_sw.o module_ra_clWRF_support.o module_ra_gsfcsw.o module_ra_goddard.o module_ra_effective_radius.o module_ra_rrtm.o module_ra_rrtmg_lw.o module_ra_rrtmg_sw.o module_ra_rrtmg_aero_optical_util_cmaq.o module_ra_rrtmg_lwf.o module_ra_rrtmg_swf.o module_ra_rrtmg_lwk.o module_ra_rrtmg_swk.o module_ra_cam_support.o module_ra_cam.o module_ra_gfdleta.o module_ra_flg.o module_ra_hs.o module_ra_eclipse.o module_ra_aerosol.o module_ra_farms.o module_sf_sfclay.o module_sf_sfclayrev.o module_sf_gfs.o module_sf_exchcoef.o module_sf_gfdl.o module_sf_slab.o module_sf_noahdrv.o module_sf_noahlsm.o module_sf_clm.o module_sf_ctsm.o module_sf_ssib.o module_sf_noah_seaice.o module_sf_noah_seaice_drv.o module_sf_noahlsm_glacial_only.o module_sf_noahmp_groundwater.o module_sf_gecros.o module_sf_noahmpdrv.o module_sf_noahmplsm.o module_sf_noahmp_glacier.o module_sf_urban.o module_sf_bep.o module_sf_bep_bem.o module_sf_bem.o module_sf_pxlsm.o module_sf_pxlsm_data.o module_sf_ruclsm.o module_sf_sfcdiags.o module_sf_sfcdiags_ruclsm.o module_sf_sstskin.o module_sf_tmnupdate.o module_sf_ocean_driver.o module_sf_oml.o module_sf_3dpwp.o module_sf_myjsfc.o module_sf_qnsesfc.o module_sf_mynn.o module_sf_fogdes.o module_sf_pxsfclay.o module_sf_temfsfclay.o module_sf_idealscmsfclay.o module_sf_spec_ideal_tsk.o module_sf_scmflux.o module_sf_scmskintemp.o module_physics_addtendc.o module_physics_init.o module_gfs_machine.o module_gfs_funcphys.o module_gfs_physcons.o module_progtm.o module_pbl_driver.o module_data_gocart_dust.o module_dust_emis.o module_cumulus_driver.o module_shallowcu_driver.o module_microphysics_driver.o module_microphysics_zero_out.o module_mixactivate.o module_radiation_driver.o module_surface_driver.o module_lightning_driver.o module_ltng_cpmpr92z.o module_ltng_crmpr92.o module_ltng_iccg.o module_fdda_psufddagd.o module_fdda_spnudging.o module_fddagd_driver.o module_fddaobs_rtfdda.o module_fddaobs_driver.o module_wind_fitch.o module_sf_lake.o module_diagnostics_driver.o module_irrigation.o module_gen_act_disk.o module_gad_psu15.o module_gad_ge16.o module_gad_nrel5.o module_gad_nrel2p8.o module_gad_ge28.o module_gad_dtu10.o module_wind_param_driver.o   \
+	module_fr_fire_driver.o module_fr_fire_driver_wrf.o module_fr_fire_atm.o module_fr_fire_model.o module_fr_fire_core.o module_fr_fire_phys.o module_fr_fire_util.o module_firebrand_spotting_mpi.o module_firebrand_spotting.o module_diag_afwa.o module_diag_cl.o module_diag_functions.o module_diag_hailcast.o module_diag_misc.o module_diag_nwp.o module_diag_rasm.o module_diag_pld.o module_diag_zld.o module_diag_trad_fields.o module_diag_solar.o
+make[3]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/phys'
+rm -f module_wind_fitch.o
+rm -f module_surface_driver.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_wind_fitch.F > module_wind_fitch.G
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_surface_driver.F > module_surface_driver.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_wind_fitch.G  > module_wind_fitch.bb
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_surface_driver.G  > module_surface_driver.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_wind_fitch.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_wind_fitch.f90
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_surface_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_surface_driver.f90
+rm -f module_wind_fitch.G module_wind_fitch.bb
+rm -f module_surface_driver.G module_surface_driver.bb
+time mpif90 -f90=ifort -o module_wind_fitch.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_wind_fitch.f90
+time mpif90 -f90=ifort -o module_surface_driver.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_surface_driver.f90
+module_wind_fitch.f90(88): error #5082: Syntax error, found END-OF-STATEMENT when expecting one of: ( : % [ . = =>
+added
+-----^
+module_wind_fitch.f90(88): error #6218: This statement is positioned incorrectly and/or has syntax errors.
+added
+^
+compilation aborted for module_wind_fitch.f90 (code 1)
+
+real	0m0.207s
+user	0m0.029s
+sys	0m0.165s
+make[3]: [../configure.wrf:391: module_wind_fitch.o] Error 1 (ignored)
+rm -f module_physics_init.o
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_physics_init.F  > module_physics_init.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_physics_init.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_physics_init.f90
+rm -f module_physics_init.b module_physics_init.bb
+time mpif90 -f90=ifort -c -real-size `expr 8 \* 4` -i4  -O0 -fno-inline -no-ip -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  module_physics_init.f90
+module_physics_init.f90(276): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [MODULE_WIND_FITCH]
+   USE module_wind_fitch
+-------^
+compilation aborted for module_physics_init.f90 (code 1)
+
+real	0m0.490s
+user	0m0.218s
+sys	0m0.195s
+make[3]: [../configure.wrf:581: module_physics_init.o] Error 1 (ignored)
+rm -f module_pbl_driver.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_pbl_driver.F > module_pbl_driver.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_pbl_driver.G  > module_pbl_driver.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_pbl_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_pbl_driver.f90
+rm -f module_pbl_driver.G module_pbl_driver.bb
+time mpif90 -f90=ifort -o module_pbl_driver.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_pbl_driver.f90
+module_pbl_driver.f90(177): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [MODULE_WIND_FITCH]
+   USE module_wind_fitch
+-------^
+module_pbl_driver.f90(1956): error #6632: Keyword arguments are invalid without an explicit interface.   [ID]
+                     & ID=id                                             &
+-----------------------^
+module_pbl_driver.f90(1957): error #6632: Keyword arguments are invalid without an explicit interface.   [Z_AT_W]
+                     &,Z_AT_W=z_at_w,u=u_phy,v=v_phy                     &
+-----------------------^
+module_pbl_driver.f90(1957): error #6632: Keyword arguments are invalid without an explicit interface.   [U]
+                     &,Z_AT_W=z_at_w,u=u_phy,v=v_phy                     &
+-------------------------------------^
+module_pbl_driver.f90(1957): error #6632: Keyword arguments are invalid without an explicit interface.   [V]
+                     &,Z_AT_W=z_at_w,u=u_phy,v=v_phy                     &
+---------------------------------------------^
+module_pbl_driver.f90(1958): error #6632: Keyword arguments are invalid without an explicit interface.   [DX]
+                     &,DX=dx,DZ=dz8w,DT=dt                               &
+-----------------------^
+module_pbl_driver.f90(1958): error #6632: Keyword arguments are invalid without an explicit interface.   [DZ]
+                     &,DX=dx,DZ=dz8w,DT=dt                               &
+-----------------------------^
+module_pbl_driver.f90(1958): error #6632: Keyword arguments are invalid without an explicit interface.   [DT]
+                     &,DX=dx,DZ=dz8w,DT=dt                               &
+-------------------------------------^
+module_pbl_driver.f90(1959): error #6632: Keyword arguments are invalid without an explicit interface.   [QKE]
+                     &,QKE=qke                                           &
+-----------------------^
+module_pbl_driver.f90(1960): error #6632: Keyword arguments are invalid without an explicit interface.   [DU]
+                     &,DU=rublten,DV=rvblten                             &
+-----------------------^
+module_pbl_driver.f90(1960): error #6632: Keyword arguments are invalid without an explicit interface.   [DV]
+                     &,DU=rublten,DV=rvblten                             &
+----------------------------------^
+module_pbl_driver.f90(1961): error #6632: Keyword arguments are invalid without an explicit interface.   [WINDFARM_OPT]
+                     &,WINDFARM_OPT=windfarm_opt,POWER=power             &
+-----------------------^
+module_pbl_driver.f90(1961): error #6632: Keyword arguments are invalid without an explicit interface.   [POWER]
+                     &,WINDFARM_OPT=windfarm_opt,POWER=power             &
+-------------------------------------------------^
+module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [IDS]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-----------------------^
+module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [IDE]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-------------------------------^
+module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [JDS]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+---------------------------------------^
+module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [JDE]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-----------------------------------------------^
+module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [KDS]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-------------------------------------------------------^
+module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [KDE]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+---------------------------------------------------------------^
+module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [IMS]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-----------------------^
+module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [IME]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-------------------------------^
+module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [JMS]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+---------------------------------------^
+module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [JME]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-----------------------------------------------^
+module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [KMS]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-------------------------------------------------------^
+module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [KME]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+---------------------------------------------------------------^
+module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [ITS]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-----------------------^
+module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [ITE]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-------------------------------^
+module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [JTS]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+---------------------------------------^
+module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [JTE]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-----------------------------------------------^
+module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [KTS]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-------------------------------------------------------^
+/tmp/ifortyudmRF.i90(2699): catastrophic error: Too many errors, exiting
+compilation aborted for module_pbl_driver.f90 (code 1)
+
+real	0m0.213s
+user	0m0.049s
+sys	0m0.150s
+make[3]: [../configure.wrf:391: module_pbl_driver.o] Error 1 (ignored)
+
+real	1m10.979s
+user	1m9.701s
+sys	0m0.719s
+make[3]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/phys'
+ar: module_physics_init.o: No such file or directory
+make[2]: [Makefile:249: physics] Error 1 (ignored)
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/phys'
+/bin/sh: line 2: [: -eq: unary operator expected
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+------------------------------------------------------------------------------
+NoahMP submodule files populating WRF directories
+------------------------------------------------------------------------------
+if [ 0  -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " chemics ; fi
+if [ 1 -eq 1 ]    ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " em_core ; fi
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+--------------------------------------
+if [ 0  -eq 0 ] ; then \
+	CF= ; \
+else \
+	CF="../chem/module_aerosols_sorgam.o ../chem/module_gocart_aerosols.o ../chem/module_mosaic_driver.o ../chem/module_input_tracer.o ../chem/module_aerosols_soa_vbs.o" ; \
+fi
+( cd dyn_em ; make -i -r -j 2 CF="" )
+make[2]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/dyn_em'
+rm -f module_advect_em.o
+rm -f module_ieva_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_advect_em.F > module_advect_em.G
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_ieva_em.F > module_ieva_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_advect_em.G  > module_advect_em.bb
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_ieva_em.G  > module_ieva_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_advect_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_advect_em.f90
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_ieva_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_ieva_em.f90
+rm -f module_ieva_em.G module_ieva_em.bb
+rm -f module_advect_em.G module_advect_em.bb
+time mpif90 -f90=ifort -o module_ieva_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_ieva_em.f90
+time mpif90 -f90=ifort -o module_advect_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_advect_em.f90
+
+real	0m0.429s
+user	0m0.251s
+sys	0m0.161s
+rm -f module_big_step_utilities_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_big_step_utilities_em.F > module_big_step_utilities_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_big_step_utilities_em.G  > module_big_step_utilities_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_big_step_utilities_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_big_step_utilities_em.f90
+rm -f module_big_step_utilities_em.G module_big_step_utilities_em.bb
+time mpif90 -f90=ifort -o module_big_step_utilities_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_big_step_utilities_em.f90
+
+real	0m2.130s
+user	0m1.929s
+sys	0m0.171s
+rm -f module_small_step_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_small_step_em.F > module_small_step_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_small_step_em.G  > module_small_step_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_small_step_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_small_step_em.f90
+rm -f module_small_step_em.G module_small_step_em.bb
+time mpif90 -f90=ifort -o module_small_step_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_small_step_em.f90
+
+real	0m0.695s
+user	0m0.535s
+sys	0m0.139s
+rm -f module_damping_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_damping_em.F > module_damping_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_damping_em.G  > module_damping_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_damping_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_damping_em.f90
+rm -f module_damping_em.G module_damping_em.bb
+time mpif90 -f90=ifort -o module_damping_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_damping_em.f90
+
+real	0m0.176s
+user	0m0.038s
+sys	0m0.128s
+rm -f module_solvedebug_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_solvedebug_em.F > module_solvedebug_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_solvedebug_em.G  > module_solvedebug_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_solvedebug_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_solvedebug_em.f90
+rm -f module_solvedebug_em.G module_solvedebug_em.bb
+time mpif90 -f90=ifort -o module_solvedebug_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_solvedebug_em.f90
+
+real	0m0.216s
+user	0m0.078s
+sys	0m0.129s
+rm -f module_bc_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_bc_em.F > module_bc_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_bc_em.G  > module_bc_em.bb
+
+real	0m5.048s
+user	0m4.702s
+sys	0m0.265s
+rm -f module_init_utilities.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_init_utilities.F > module_init_utilities.G
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_bc_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_bc_em.f90
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_init_utilities.G  > module_init_utilities.bb
+rm -f module_bc_em.G module_bc_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_init_utilities.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_init_utilities.f90
+time mpif90 -f90=ifort -o module_bc_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_bc_em.f90
+rm -f module_init_utilities.G module_init_utilities.bb
+time mpif90 -f90=ifort -o module_init_utilities.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_init_utilities.f90
+
+real	0m0.193s
+user	0m0.041s
+sys	0m0.133s
+rm -f module_wps_io_arw.o
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_wps_io_arw.F > module_wps_io_arw.b 
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_wps_io_arw.b  > module_wps_io_arw.f90
+rm -f module_wps_io_arw.b
+if fgrep -iq '!$OMP' module_wps_io_arw.f90 ; then \
+          if [ -n "-qopenmp -fpp -auto" ] ; then echo COMPILING module_wps_io_arw.F WITH OMP ; fi ; \
+  time mpif90 -f90=ifort -c -real-size `expr 8 \* 4` -i4 -O0 -fno-inline -no-ip -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include   -qopenmp -fpp -auto module_wps_io_arw.f90 ; \
+        else \
+          if [ -n "-qopenmp -fpp -auto" ] ; then echo COMPILING module_wps_io_arw.F WITHOUT OMP ; fi ; \
+  time mpif90 -f90=ifort -c -real-size `expr 8 \* 4` -i4 -O0 -fno-inline -no-ip -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include   module_wps_io_arw.f90 ; \
+        fi
+COMPILING module_wps_io_arw.F WITHOUT OMP
+
+real	0m0.642s
+user	0m0.437s
+sys	0m0.172s
+rm -f module_polarfft.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_polarfft.F > module_polarfft.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_polarfft.G  > module_polarfft.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_polarfft.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_polarfft.f90
+rm -f module_polarfft.G module_polarfft.bb
+time mpif90 -f90=ifort -o module_polarfft.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_polarfft.f90
+
+real	0m0.603s
+user	0m0.384s
+sys	0m0.174s
+rm -f module_force_scm.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_force_scm.F > module_force_scm.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_force_scm.G  > module_force_scm.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_force_scm.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_force_scm.f90
+rm -f module_force_scm.G module_force_scm.bb
+time mpif90 -f90=ifort -o module_force_scm.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_force_scm.f90
+
+real	0m0.389s
+user	0m0.241s
+sys	0m0.135s
+rm -f module_convtrans_prep.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_convtrans_prep.F > module_convtrans_prep.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_convtrans_prep.G  > module_convtrans_prep.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_convtrans_prep.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_convtrans_prep.f90
+rm -f module_convtrans_prep.G module_convtrans_prep.bb
+time mpif90 -f90=ifort -o module_convtrans_prep.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_convtrans_prep.f90
+
+real	0m0.200s
+user	0m0.064s
+sys	0m0.126s
+rm -f ../phys/module_pbl_driver.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" ../phys/module_pbl_driver.F > ../phys/module_pbl_driver.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP ../phys/module_pbl_driver.G  > ../phys/module_pbl_driver.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe ../phys/module_pbl_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > ../phys/module_pbl_driver.f90
+rm -f ../phys/module_pbl_driver.G ../phys/module_pbl_driver.bb
+time mpif90 -f90=ifort -o ../phys/module_pbl_driver.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  ../phys/module_pbl_driver.f90
+../phys/module_pbl_driver.f90(177): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [MODULE_WIND_FITCH]
+   USE module_wind_fitch
+-------^
+../phys/module_pbl_driver.f90(1956): error #6632: Keyword arguments are invalid without an explicit interface.   [ID]
+                     & ID=id                                             &
+-----------------------^
+../phys/module_pbl_driver.f90(1957): error #6632: Keyword arguments are invalid without an explicit interface.   [Z_AT_W]
+                     &,Z_AT_W=z_at_w,u=u_phy,v=v_phy                     &
+-----------------------^
+../phys/module_pbl_driver.f90(1957): error #6632: Keyword arguments are invalid without an explicit interface.   [U]
+                     &,Z_AT_W=z_at_w,u=u_phy,v=v_phy                     &
+-------------------------------------^
+../phys/module_pbl_driver.f90(1957): error #6632: Keyword arguments are invalid without an explicit interface.   [V]
+                     &,Z_AT_W=z_at_w,u=u_phy,v=v_phy                     &
+---------------------------------------------^
+../phys/module_pbl_driver.f90(1958): error #6632: Keyword arguments are invalid without an explicit interface.   [DX]
+                     &,DX=dx,DZ=dz8w,DT=dt                               &
+-----------------------^
+../phys/module_pbl_driver.f90(1958): error #6632: Keyword arguments are invalid without an explicit interface.   [DZ]
+                     &,DX=dx,DZ=dz8w,DT=dt                               &
+-----------------------------^
+../phys/module_pbl_driver.f90(1958): error #6632: Keyword arguments are invalid without an explicit interface.   [DT]
+                     &,DX=dx,DZ=dz8w,DT=dt                               &
+-------------------------------------^
+../phys/module_pbl_driver.f90(1959): error #6632: Keyword arguments are invalid without an explicit interface.   [QKE]
+                     &,QKE=qke                                           &
+-----------------------^
+../phys/module_pbl_driver.f90(1960): error #6632: Keyword arguments are invalid without an explicit interface.   [DU]
+                     &,DU=rublten,DV=rvblten                             &
+-----------------------^
+../phys/module_pbl_driver.f90(1960): error #6632: Keyword arguments are invalid without an explicit interface.   [DV]
+                     &,DU=rublten,DV=rvblten                             &
+----------------------------------^
+../phys/module_pbl_driver.f90(1961): error #6632: Keyword arguments are invalid without an explicit interface.   [WINDFARM_OPT]
+                     &,WINDFARM_OPT=windfarm_opt,POWER=power             &
+-----------------------^
+../phys/module_pbl_driver.f90(1961): error #6632: Keyword arguments are invalid without an explicit interface.   [POWER]
+                     &,WINDFARM_OPT=windfarm_opt,POWER=power             &
+-------------------------------------------------^
+../phys/module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [IDS]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-----------------------^
+../phys/module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [IDE]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-------------------------------^
+../phys/module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [JDS]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+---------------------------------------^
+../phys/module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [JDE]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-----------------------------------------------^
+../phys/module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [KDS]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+-------------------------------------------------------^
+../phys/module_pbl_driver.f90(1962): error #6632: Keyword arguments are invalid without an explicit interface.   [KDE]
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+---------------------------------------------------------------^
+../phys/module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [IMS]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-----------------------^
+../phys/module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [IME]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-------------------------------^
+../phys/module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [JMS]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+---------------------------------------^
+../phys/module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [JME]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-----------------------------------------------^
+../phys/module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [KMS]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+-------------------------------------------------------^
+../phys/module_pbl_driver.f90(1963): error #6632: Keyword arguments are invalid without an explicit interface.   [KME]
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+---------------------------------------------------------------^
+../phys/module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [ITS]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-----------------------^
+../phys/module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [ITE]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-------------------------------^
+../phys/module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [JTS]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+---------------------------------------^
+../phys/module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [JTE]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-----------------------------------------------^
+../phys/module_pbl_driver.f90(1964): error #6632: Keyword arguments are invalid without an explicit interface.   [KTS]
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+-------------------------------------------------------^
+/tmp/ifortroVaqT.i90(2699): catastrophic error: Too many errors, exiting
+compilation aborted for ../phys/module_pbl_driver.f90 (code 1)
+
+real	0m0.187s
+user	0m0.051s
+sys	0m0.124s
+make[2]: [../configure.wrf:391: ../phys/module_pbl_driver.o] Error 1 (ignored)
+rm -f module_stoch.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_stoch.F > module_stoch.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_stoch.G  > module_stoch.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_stoch.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_stoch.f90
+rm -f module_stoch.G module_stoch.bb
+time mpif90 -f90=ifort -o module_stoch.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_stoch.f90
+
+real	0m1.731s
+user	0m1.465s
+sys	0m0.170s
+rm -f module_sfs_nba.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_sfs_nba.F > module_sfs_nba.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_sfs_nba.G  > module_sfs_nba.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_sfs_nba.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_sfs_nba.f90
+rm -f module_sfs_nba.G module_sfs_nba.bb
+time mpif90 -f90=ifort -o module_sfs_nba.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_sfs_nba.f90
+
+real	0m0.502s
+user	0m0.356s
+sys	0m0.129s
+rm -f module_sfs_drm.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_sfs_drm.F > module_sfs_drm.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_sfs_drm.G  > module_sfs_drm.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_sfs_drm.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_sfs_drm.f90
+rm -f module_sfs_drm.G module_sfs_drm.bb
+time mpif90 -f90=ifort -o module_sfs_drm.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_sfs_drm.f90
+
+real	0m0.573s
+user	0m0.429s
+sys	0m0.132s
+rm -f module_sfs_rsfs.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_sfs_rsfs.F > module_sfs_rsfs.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_sfs_rsfs.G  > module_sfs_rsfs.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_sfs_rsfs.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_sfs_rsfs.f90
+rm -f module_sfs_rsfs.G module_sfs_rsfs.bb
+time mpif90 -f90=ifort -o module_sfs_rsfs.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_sfs_rsfs.f90
+
+real	0m0.548s
+user	0m0.397s
+sys	0m0.143s
+rm -f module_stoch_les_inflow_perts.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_stoch_les_inflow_perts.F > module_stoch_les_inflow_perts.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_stoch_les_inflow_perts.G  > module_stoch_les_inflow_perts.bb
+
+real	0m2.690s
+user	0m2.419s
+sys	0m0.200s
+rm -f module_avgflx_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_avgflx_em.F > module_avgflx_em.G
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_stoch_les_inflow_perts.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_stoch_les_inflow_perts.f90
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_avgflx_em.G  > module_avgflx_em.bb
+rm -f module_stoch_les_inflow_perts.G module_stoch_les_inflow_perts.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_avgflx_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_avgflx_em.f90
+time mpif90 -f90=ifort -o module_stoch_les_inflow_perts.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_stoch_les_inflow_perts.f90
+rm -f module_avgflx_em.G module_avgflx_em.bb
+time mpif90 -f90=ifort -o module_avgflx_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_avgflx_em.f90
+
+real	0m0.261s
+user	0m0.062s
+sys	0m0.170s
+rm -f module_after_all_rk_steps.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_after_all_rk_steps.F > module_after_all_rk_steps.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_after_all_rk_steps.G  > module_after_all_rk_steps.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_after_all_rk_steps.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_after_all_rk_steps.f90
+rm -f module_after_all_rk_steps.G module_after_all_rk_steps.bb
+time mpif90 -f90=ifort -o module_after_all_rk_steps.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_after_all_rk_steps.f90
+
+real	0m0.577s
+user	0m0.352s
+sys	0m0.200s
+rm -f module_horizontal_slices.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_horizontal_slices.F > module_horizontal_slices.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_horizontal_slices.G  > module_horizontal_slices.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_horizontal_slices.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_horizontal_slices.f90
+rm -f module_horizontal_slices.G module_horizontal_slices.bb
+time mpif90 -f90=ifort -o module_horizontal_slices.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_horizontal_slices.f90
+
+real	0m0.178s
+user	0m0.034s
+sys	0m0.133s
+rm -f init_modules_em.o
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe init_modules_em.F > init_modules_em.b 
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP init_modules_em.b  > init_modules_em.f90
+rm -f init_modules_em.b
+if fgrep -iq '!$OMP' init_modules_em.f90 ; then \
+          if [ -n "-qopenmp -fpp -auto" ] ; then echo COMPILING init_modules_em.F WITH OMP ; fi ; \
+  time mpif90 -f90=ifort -c -real-size `expr 8 \* 4` -i4 -O0 -fno-inline -no-ip -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include   -qopenmp -fpp -auto init_modules_em.f90 ; \
+        else \
+          if [ -n "-qopenmp -fpp -auto" ] ; then echo COMPILING init_modules_em.F WITHOUT OMP ; fi ; \
+  time mpif90 -f90=ifort -c -real-size `expr 8 \* 4` -i4 -O0 -fno-inline -no-ip -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include   init_modules_em.f90 ; \
+        fi
+COMPILING init_modules_em.F WITHOUT OMP
+
+real	0m0.134s
+user	0m0.019s
+sys	0m0.110s
+rm -f ../phys/module_physics_init.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" ../phys/module_physics_init.F > ../phys/module_physics_init.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP ../phys/module_physics_init.G  > ../phys/module_physics_init.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe ../phys/module_physics_init.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > ../phys/module_physics_init.f90
+rm -f ../phys/module_physics_init.G ../phys/module_physics_init.bb
+time mpif90 -f90=ifort -o ../phys/module_physics_init.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  ../phys/module_physics_init.f90
+../phys/module_physics_init.f90(276): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [MODULE_WIND_FITCH]
+   USE module_wind_fitch
+-------^
+
+real	0m1.324s
+user	0m0.689s
+sys	0m0.507s
+rm -f shift_domain_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" shift_domain_em.F > shift_domain_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP shift_domain_em.G  > shift_domain_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe shift_domain_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > shift_domain_em.f90
+compilation aborted for ../phys/module_physics_init.f90 (code 1)
+
+real	0m0.479s
+user	0m0.219s
+sys	0m0.195s
+make[2]: [../configure.wrf:388: ../phys/module_physics_init.o] Error 1 (ignored)
+rm -f couple_or_uncouple_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" couple_or_uncouple_em.F > couple_or_uncouple_em.G
+rm -f shift_domain_em.G shift_domain_em.bb
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP couple_or_uncouple_em.G  > couple_or_uncouple_em.bb
+time mpif90 -f90=ifort -o shift_domain_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  shift_domain_em.f90
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe couple_or_uncouple_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > couple_or_uncouple_em.f90
+rm -f couple_or_uncouple_em.G couple_or_uncouple_em.bb
+time mpif90 -f90=ifort -o couple_or_uncouple_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  couple_or_uncouple_em.f90
+
+real	0m2.745s
+user	0m1.818s
+sys	0m0.827s
+rm -f nest_init_utils.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" nest_init_utils.F > nest_init_utils.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP nest_init_utils.G  > nest_init_utils.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe nest_init_utils.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > nest_init_utils.f90
+
+real	0m2.803s
+user	0m2.154s
+sys	0m0.576s
+rm -f adapt_timestep_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" adapt_timestep_em.F > adapt_timestep_em.G
+rm -f nest_init_utils.G nest_init_utils.bb
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP adapt_timestep_em.G  > adapt_timestep_em.bb
+time mpif90 -f90=ifort -o nest_init_utils.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  nest_init_utils.f90
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe adapt_timestep_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > adapt_timestep_em.f90
+rm -f adapt_timestep_em.G adapt_timestep_em.bb
+time mpif90 -f90=ifort -o adapt_timestep_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  adapt_timestep_em.f90
+
+real	0m0.695s
+user	0m0.367s
+sys	0m0.189s
+rm -f interp_domain_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" interp_domain_em.F > interp_domain_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP interp_domain_em.G  > interp_domain_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe interp_domain_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > interp_domain_em.f90
+rm -f interp_domain_em.G interp_domain_em.bb
+time mpif90 -f90=ifort -o interp_domain_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  interp_domain_em.f90
+
+real	0m0.145s
+user	0m0.026s
+sys	0m0.114s
+rm -f module_diffusion_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_diffusion_em.F > module_diffusion_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_diffusion_em.G  > module_diffusion_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_diffusion_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_diffusion_em.f90
+rm -f module_diffusion_em.G module_diffusion_em.bb
+time mpif90 -f90=ifort -o module_diffusion_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_diffusion_em.f90
+
+real	0m2.652s
+user	0m1.791s
+sys	0m0.647s
+rm -f module_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_em.F > module_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_em.G  > module_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_em.f90
+rm -f module_em.G module_em.bb
+time mpif90 -f90=ifort -o module_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_em.f90
+
+real	0m2.995s
+user	0m2.758s
+sys	0m0.202s
+rm -f module_sfs_driver.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_sfs_driver.F > module_sfs_driver.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_sfs_driver.G  > module_sfs_driver.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_sfs_driver.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_sfs_driver.f90
+rm -f module_sfs_driver.G module_sfs_driver.bb
+time mpif90 -f90=ifort -o module_sfs_driver.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_sfs_driver.f90
+
+real	0m1.906s
+user	0m1.652s
+sys	0m0.187s
+rm -f start_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" start_em.F > start_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP start_em.G  > start_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe start_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > start_em.f90
+rm -f start_em.G start_em.bb
+time mpif90 -f90=ifort -o start_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  start_em.f90
+start_em.f90(37): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [MODULE_PHYSICS_INIT]
+   USE module_physics_init
+-------^
+compilation aborted for start_em.f90 (code 1)
+
+real	0m2.218s
+user	0m1.212s
+sys	0m0.871s
+make[2]: [../configure.wrf:391: start_em.o] Error 1 (ignored)
+rm -f module_first_rk_step_part1.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_first_rk_step_part1.F > module_first_rk_step_part1.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_first_rk_step_part1.G  > module_first_rk_step_part1.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_first_rk_step_part1.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_first_rk_step_part1.f90
+rm -f module_first_rk_step_part1.G module_first_rk_step_part1.bb
+time mpif90 -f90=ifort -o module_first_rk_step_part1.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_first_rk_step_part1.f90
+module_first_rk_step_part1.f90(45): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [MODULE_PBL_DRIVER]
+    USE module_pbl_driver, ONLY : pbl_driver
+--------^
+module_first_rk_step_part1.f90(574): error #6632: Keyword arguments are invalid without an explicit interface.   [AKHS]
+CALL pbl_driver(AKHS=grid%akhs,AKMS=grid%akms,BL_PBL_PHYSICS=config_flags%bl_pbl_physics,WINDFARM_OPT=config_flags%windfarm_opt,po&
+----------------^
+module_first_rk_step_part1.f90(574): error #6632: Keyword arguments are invalid without an explicit interface.   [AKMS]
+CALL pbl_driver(AKHS=grid%akhs,AKMS=grid%akms,BL_PBL_PHYSICS=config_flags%bl_pbl_physics,WINDFARM_OPT=config_flags%windfarm_opt,po&
+-------------------------------^
+module_first_rk_step_part1.f90(574): error #6632: Keyword arguments are invalid without an explicit interface.   [BL_PBL_PHYSICS]
+CALL pbl_driver(AKHS=grid%akhs,AKMS=grid%akms,BL_PBL_PHYSICS=config_flags%bl_pbl_physics,WINDFARM_OPT=config_flags%windfarm_opt,po&
+----------------------------------------------^
+module_first_rk_step_part1.f90(574): error #6632: Keyword arguments are invalid without an explicit interface.   [WINDFARM_OPT]
+CALL pbl_driver(AKHS=grid%akhs,AKMS=grid%akms,BL_PBL_PHYSICS=config_flags%bl_pbl_physics,WINDFARM_OPT=config_flags%windfarm_opt,po&
+-----------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(574): error #6632: Keyword arguments are invalid without an explicit interface.   [POWER]
+CALL pbl_driver(AKHS=grid%akhs,AKMS=grid%akms,BL_PBL_PHYSICS=config_flags%bl_pbl_physics,WINDFARM_OPT=config_flags%windfarm_opt,po&
+--------------------------------------------------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(575): error #6632: Keyword arguments are invalid without an explicit interface.   [BLDT]
+&wer=grid%power,BLDT=grid%bldt,CURR_SECS=curr_secs,ADAPT_STEP_FLAG=adapt_step_flag,BLDTACTTIME=grid%bldtacttime,BR=grid%br,CHKLOWQ=&
+----------------^
+module_first_rk_step_part1.f90(575): error #6632: Keyword arguments are invalid without an explicit interface.   [CURR_SECS]
+&wer=grid%power,BLDT=grid%bldt,CURR_SECS=curr_secs,ADAPT_STEP_FLAG=adapt_step_flag,BLDTACTTIME=grid%bldtacttime,BR=grid%br,CHKLOWQ=&
+-------------------------------^
+module_first_rk_step_part1.f90(575): error #6632: Keyword arguments are invalid without an explicit interface.   [ADAPT_STEP_FLAG]
+&wer=grid%power,BLDT=grid%bldt,CURR_SECS=curr_secs,ADAPT_STEP_FLAG=adapt_step_flag,BLDTACTTIME=grid%bldtacttime,BR=grid%br,CHKLOWQ=&
+---------------------------------------------------^
+module_first_rk_step_part1.f90(575): error #6632: Keyword arguments are invalid without an explicit interface.   [BLDTACTTIME]
+&wer=grid%power,BLDT=grid%bldt,CURR_SECS=curr_secs,ADAPT_STEP_FLAG=adapt_step_flag,BLDTACTTIME=grid%bldtacttime,BR=grid%br,CHKLOWQ=&
+-----------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(575): error #6632: Keyword arguments are invalid without an explicit interface.   [BR]
+&wer=grid%power,BLDT=grid%bldt,CURR_SECS=curr_secs,ADAPT_STEP_FLAG=adapt_step_flag,BLDTACTTIME=grid%bldtacttime,BR=grid%br,CHKLOWQ=&
+----------------------------------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(575): error #6632: Keyword arguments are invalid without an explicit interface.   [CHKLOWQ]
+&wer=grid%power,BLDT=grid%bldt,CURR_SECS=curr_secs,ADAPT_STEP_FLAG=adapt_step_flag,BLDTACTTIME=grid%bldtacttime,BR=grid%br,CHKLOWQ=&
+---------------------------------------------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [CT]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+---------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [DT]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+--------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [DX]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+-------------------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [DY]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+------------------------------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [DX2D]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+-----------------------------------------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [AREA2D]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+--------------------------------------------------------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [DZ8W]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+---------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [HPBL_HOLD]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+-------------------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(576): error #6632: Keyword arguments are invalid without an explicit interface.   [EXCH_H]
+&chklowq,CT=grid%ct,DT=grid%dt,DX=grid%dx,DY=grid%dy,DX2D=grid%dx2d,AREA2D=grid%area2d,DZ8W=dz8w,HPBL_HOLD=hpbl_hold,EXCH_H=grid%ex&
+---------------------------------------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [EXCH_M]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [FM]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+-------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [FHH]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+------------------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [F]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+------------------------------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [GRDFLX]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+---------------------------------------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [GZ1OZ0]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+----------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [HFX]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+------------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [HT]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+-------------------------------------------------------------------------------------------------------^
+module_first_rk_step_part1.f90(577): error #6632: Keyword arguments are invalid without an explicit interface.   [ID]
+&ch_h,EXCH_M=grid%exch_m,FM=grid%fm,FHH=grid%fh,F=grid%f,GRDFLX=grid%grdflx,GZ1OZ0=gz1oz0,HFX=grid%hfx,HT=grid%ht,ID=grid%id,ITIMES&
+------------------------------------------------------------------------------------------------------------------^
+/tmp/ifortqPA7D6.i90(1007): catastrophic error: Too many errors, exiting
+compilation aborted for module_first_rk_step_part1.f90 (code 1)
+
+real	0m1.107s
+user	0m0.504s
+sys	0m0.534s
+make[2]: [../configure.wrf:391: module_first_rk_step_part1.o] Error 1 (ignored)
+
+real	0m55.881s
+user	0m54.077s
+sys	0m1.249s
+rm -f module_first_rk_step_part2.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" module_first_rk_step_part2.F > module_first_rk_step_part2.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP module_first_rk_step_part2.G  > module_first_rk_step_part2.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe module_first_rk_step_part2.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > module_first_rk_step_part2.f90
+rm -f module_first_rk_step_part2.G module_first_rk_step_part2.bb
+time mpif90 -f90=ifort -o module_first_rk_step_part2.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  module_first_rk_step_part2.f90
+
+real	0m5.115s
+user	0m4.323s
+sys	0m0.711s
+rm -f solve_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" solve_em.F > solve_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP solve_em.G  > solve_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe solve_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > solve_em.f90
+rm -f solve_em.G solve_em.bb
+time mpif90 -f90=ifort -o solve_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  solve_em.f90
+solve_em.f90(81): error #7002: Error in opening the compiled module file.  Check INCLUDE paths.   [MODULE_FIRST_RK_STEP_PART1]
+   USE module_first_rk_step_part1
+-------^
+solve_em.f90(988): error #6632: Keyword arguments are invalid without an explicit interface.   [F_FLUX]
+                             , f_flux=f_flux                    &
+-------------------------------^
+solve_em.f90(989): error #6632: Keyword arguments are invalid without an explicit interface.   [AEROCU]
+                             , aerocu=aerocu                    &
+-------------------------------^
+solve_em.f90(990): error #6632: Keyword arguments are invalid without an explicit interface.   [RESTART_FLAG]
+                             , restart_flag=restart_flag        &
+-------------------------------^
+solve_em.f90(991): error #6632: Keyword arguments are invalid without an explicit interface.   [FEEDBACK_IS_READY]
+                             , feedback_is_ready=feedback_is_ready    &
+-------------------------------^
+compilation aborted for solve_em.f90 (code 1)
+
+real	0m5.082s
+user	0m4.196s
+sys	0m0.796s
+make[2]: [../configure.wrf:391: solve_em.o] Error 1 (ignored)
+ar ru ../main/libwrflib.a module_advect_em.o module_ieva_em.o module_diffusion_em.o module_small_step_em.o module_big_step_utilities_em.o module_em.o module_solvedebug_em.o module_bc_em.o module_init_utilities.o module_wps_io_arw.o module_damping_em.o module_polarfft.o module_force_scm.o module_first_rk_step_part1.o module_first_rk_step_part2.o module_avgflx_em.o module_sfs_nba.o module_sfs_drm.o module_sfs_rsfs.o module_stoch_les_inflow_perts.o module_convtrans_prep.o module_sfs_driver.o module_stoch.o module_after_all_rk_steps.o module_horizontal_slices.o  init_modules_em.o solve_em.o start_em.o shift_domain_em.o couple_or_uncouple_em.o nest_init_utils.o adapt_timestep_em.o interp_domain_em.o
+ar: module_first_rk_step_part1.o: No such file or directory
+make[2]: [Makefile:62: dyn_em] Error 1 (ignored)
+make[2]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/dyn_em'
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william'
+if [ 0 -eq 1 ]   ; then make -i -r MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " wrf_hydro ; fi
+( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " SOLVER=em em_wrf )
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/main'
+rm -f ../main/module_wrf_top.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" ../main/module_wrf_top.F > ../main/module_wrf_top.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP ../main/module_wrf_top.G  > ../main/module_wrf_top.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe ../main/module_wrf_top.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > ../main/module_wrf_top.f90
+rm -f ../main/module_wrf_top.G ../main/module_wrf_top.bb
+time mpif90 -f90=ifort -o ../main/module_wrf_top.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  ../main/module_wrf_top.f90
+
+real	0m2.726s
+user	0m2.462s
+sys	0m0.211s
+rm -f wrf.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" wrf.F > wrf.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP wrf.G  > wrf.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe wrf.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > wrf.f90
+rm -f wrf.G wrf.bb
+time mpif90 -f90=ifort -o wrf.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  wrf.f90
+
+real	0m0.227s
+user	0m0.050s
+sys	0m0.149s
+ranlib  libwrflib.a
+time mpif90 -f90=ifort -o wrf.exe -qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip   wrf.o ../main/module_wrf_top.o libwrflib.a  /home/wradunz/WRFv4.4-DRM_GAD_william/external/fftpack/fftpack5/libfftpack.a /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/libio_grib1.a /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib_share/libio_grib_share.a /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int/libwrfio_int.a -L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time /home/wradunz/WRFv4.4-DRM_GAD_william/external/RSL_LITE/librsl_lite.a /home/wradunz/WRFv4.4-DRM_GAD_william/frame/module_internal_header_util.o /home/wradunz/WRFv4.4-DRM_GAD_william/frame/pack_utils.o -L/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -lwrfio_nf  -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/lib -lnetcdff -lnetcdf -L/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_pnetcdf -lwrfio_pnf  -L/nopt/nrel/apps/software/wrf/intel/installs/pnetcdf/lib -lpnetcdf         
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(module_dm.o): in function `feedback_domain_em_part2_':
+module_dm.f90:(.text+0x154995): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154a71): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154ba2): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154cd0): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154dfa): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(module_dm.o):module_dm.f90:(.text+0x154f24): more undefined references to `cd_feedback_mask_' follow
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(module_check_a_mundo.o): in function `module_check_a_mundo_mp_check_nml_consistency_':
+module_check_a_mundo.f90:(.text+0xbc5): undefined reference to `module_bep_bem_helper_mp_nurbm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0xbd1): undefined reference to `module_bep_bem_helper_mp_nurbm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65bb): undefined reference to `bep_bem_ndm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65c6): undefined reference to `bep_bem_nz_um_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65d1): undefined reference to `bep_bem_ng_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65dc): undefined reference to `bep_bem_nwr_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65e7): undefined reference to `bep_bem_nf_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65f2): undefined reference to `bep_bem_ngb_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65fd): undefined reference to `bep_bem_nbui_max_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6608): undefined reference to `bep_bem_ngr_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6618): undefined reference to `bep_ndm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6623): undefined reference to `bep_nz_um_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x662e): undefined reference to `bep_ng_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6639): undefined reference to `bep_nwr_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(solve_interface.o): in function `solve_interface_':
+solve_interface.f90:(.text+0xd60): undefined reference to `solve_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(init_modules.o): in function `init_modules_':
+init_modules.f90:(.text+0x5d): undefined reference to `init_modules_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(mediation_integrate.o): in function `init_domain_constants_':
+mediation_integrate.f90:(.text+0x5741): undefined reference to `init_domain_constants_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(mediation_integrate.o): in function `med_nest_initial_':
+mediation_integrate.f90:(.text+0x66a5): undefined reference to `copy_3d_field_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0x6b99): undefined reference to `copy_3d_field_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0x6e55): undefined reference to `copy_3d_field_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0x749a): undefined reference to `copy_3d_field_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0x798e): undefined reference to `copy_3d_field_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0x7d26): undefined reference to `adjust_tempqv_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0xad93): undefined reference to `blend_terrain_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0xb281): undefined reference to `blend_terrain_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0xb51d): undefined reference to `blend_terrain_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0xbc42): undefined reference to `input_terrain_rsmas_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_integrate.f90:(.text+0xc636): undefined reference to `init_domain_vert_nesting_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(mediation_force_domain.o): in function `med_force_domain_':
+mediation_force_domain.f90:(.text+0x9fd): undefined reference to `couple_or_uncouple_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_force_domain.f90:(.text+0x1aeb): undefined reference to `couple_or_uncouple_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_force_domain.f90:(.text+0x3d3d): undefined reference to `couple_or_uncouple_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: mediation_force_domain.f90:(.text+0x4dcc): undefined reference to `couple_or_uncouple_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(mediation_feedback_domain.o): in function `med_feedback_domain_':
+mediation_feedback_domain.f90:(.text+0x2cac): undefined reference to `update_after_feedback_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(start_domain.o): in function `start_domain_':
+start_domain.f90:(.text+0xcf5): undefined reference to `start_domain_em_'
+Command exited with non-zero status 1
+0.35user 0.36system 0:00.96elapsed 74%CPU (0avgtext+0avgdata 140400maxresident)k
+114480inputs+61568outputs (53major+61333minor)pagefaults 0swaps
+make[1]: [Makefile:17: em_wrf] Error 1 (ignored)
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/main'
+( cd run ; /bin/rm -f wrf.exe ; ln -s ../main/wrf.exe . )
+if [ 0 -eq 1 ] ; then \
+  ( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " SOLVER=em em_wrf_SST_ESMF ) ; \
+fi
+build started:   Thu Apr 10 10:49:35 MDT 2025
+build completed: Thu Apr 10 10:52:21 MDT 2025
+--------------------------------------
+( cd main ; make -i -r RLFLAGS="" MODULE_DIRS="-I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include " SOLVER=em IDEAL_CASE=ideal em_ideal )
+make[1]: Entering directory '/home/wradunz/WRFv4.4-DRM_GAD_william/main'
+rm -f ../dyn_em/module_initialize_ideal.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" ../dyn_em/module_initialize_ideal.F > ../dyn_em/module_initialize_ideal.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP ../dyn_em/module_initialize_ideal.G  > ../dyn_em/module_initialize_ideal.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe ../dyn_em/module_initialize_ideal.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > ../dyn_em/module_initialize_ideal.f90
+rm -f ../dyn_em/module_initialize_ideal.G ../dyn_em/module_initialize_ideal.bb
+time mpif90 -f90=ifort -o ../dyn_em/module_initialize_ideal.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  ../dyn_em/module_initialize_ideal.f90
+
+real	0m5.806s
+user	0m5.529s
+sys	0m0.213s
+rm -f ideal_em.o
+sed -e "s/^\!.*'.*//" -e "s/^ *\!.*'.*//" ideal_em.F > ideal_em.G
+/lib/cpp -P -nostdinc -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -DEM_CORE=1 -DNMM_CORE=0 -DNMM_MAX_DIM=2600 -DDA_CORE=0 -DWRFPLUS=0 -DIWORDSIZE=4 -DDWORDSIZE=8 -DRWORDSIZE=4 -DLWORDSIZE=4 -DNONSTANDARD_SYSTEM_FUNC  -DWRF_USE_CLM -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -DDM_PARALLEL -DNETCDF -DPNETCDF -DPNETCDF_QUILT -DLANDREAD_STUB=1 -DUSE_ALLOCATABLES -Dwrfmodel -DGRIB1 -DINTIO -DKEEP_INT_AROUND -DLIMIT_ARGS -DBUILD_RRTMG_FAST=0 -DBUILD_RRTMK=0 -DBUILD_SBM_FAST=1 -DSHOW_ALL_VARS_USED=0 -DCONFIG_BUF_LEN=65536 -DMAX_DOMAINS_F=21 -DMAX_HISTORY=25 -DNMM_NEST=0  -I. -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT  -D_OPENMP ideal_em.G  > ideal_em.bb
+/home/wradunz/WRFv4.4-DRM_GAD_william/tools/standard.exe ideal_em.bb | /lib/cpp -P -nostdinc -traditional-cpp -DUSE_NETCDF4_FEATURES -DWRFIO_NCD_LARGE_FILE_SUPPORT > ideal_em.f90
+rm -f ideal_em.G ideal_em.bb
+time mpif90 -f90=ifort -o ideal_em.o -c -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -qopenmp -fpp -auto -I../dyn_em  -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90  -I/home/wradunz/WRFv4.4-DRM_GAD_william/main -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -I/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int -I/home/wradunz/WRFv4.4-DRM_GAD_william/frame -I/home/wradunz/WRFv4.4-DRM_GAD_william/share -I/home/wradunz/WRFv4.4-DRM_GAD_william/phys -I/home/wradunz/WRFv4.4-DRM_GAD_william/wrftladj -I/home/wradunz/WRFv4.4-DRM_GAD_william/chem -I/home/wradunz/WRFv4.4-DRM_GAD_william/inc -I/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/include  -real-size `expr 8 \* 4` -i4  ideal_em.f90
+
+real	0m0.655s
+user	0m0.385s
+sys	0m0.210s
+ranlib  libwrflib.a
+time mpif90 -f90=ifort -o ideal.exe -qopenmp -fpp -auto -O1 -ip -fp-model precise -w -ftz -align all -fno-alias -FR -convert big_endian   -ip   ideal_em.o ../dyn_em/module_initialize_ideal.o libwrflib.a /home/wradunz/WRFv4.4-DRM_GAD_william/external/fftpack/fftpack5/libfftpack.a /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib1/libio_grib1.a /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_grib_share/libio_grib_share.a /home/wradunz/WRFv4.4-DRM_GAD_william/external/io_int/libwrfio_int.a -L/home/wradunz/WRFv4.4-DRM_GAD_william/external/esmf_time_f90 -lesmf_time /home/wradunz/WRFv4.4-DRM_GAD_william/external/RSL_LITE/librsl_lite.a /home/wradunz/WRFv4.4-DRM_GAD_william/frame/module_internal_header_util.o /home/wradunz/WRFv4.4-DRM_GAD_william/frame/pack_utils.o -L/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_netcdf -lwrfio_nf  -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf/lib -lnetcdff -lnetcdf -L/home/wradunz/WRFv4.4-DRM_GAD_william/external/io_pnetcdf -lwrfio_pnf  -L/nopt/nrel/apps/software/wrf/intel/installs/pnetcdf/lib -lpnetcdf        
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: ../dyn_em/module_initialize_ideal.o: in function `module_initialize_ideal_mp_init_domain_rk_':
+module_initialize_ideal.f90:(.text+0x5b20): undefined reference to `module_init_utilities_mp_interp_0_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_initialize_ideal.f90:(.text+0x670c): undefined reference to `module_init_utilities_mp_interp_0_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_initialize_ideal.f90:(.text+0x6847): undefined reference to `module_init_utilities_mp_interp_0_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_initialize_ideal.f90:(.text+0x6f0d): undefined reference to `module_init_utilities_mp_interp_0_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_initialize_ideal.f90:(.text+0x7145): undefined reference to `module_init_utilities_mp_interp_0_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: ../dyn_em/module_initialize_ideal.o:module_initialize_ideal.f90:(.text+0x719c): more undefined references to `module_init_utilities_mp_interp_0_' follow
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(module_dm.o): in function `feedback_domain_em_part2_':
+module_dm.f90:(.text+0x154995): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154a71): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154ba2): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154cd0): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_dm.f90:(.text+0x154dfa): undefined reference to `cd_feedback_mask_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(module_dm.o):module_dm.f90:(.text+0x154f24): more undefined references to `cd_feedback_mask_' follow
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(module_check_a_mundo.o): in function `module_check_a_mundo_mp_check_nml_consistency_':
+module_check_a_mundo.f90:(.text+0xbc5): undefined reference to `module_bep_bem_helper_mp_nurbm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0xbd1): undefined reference to `module_bep_bem_helper_mp_nurbm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65bb): undefined reference to `bep_bem_ndm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65c6): undefined reference to `bep_bem_nz_um_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65d1): undefined reference to `bep_bem_ng_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65dc): undefined reference to `bep_bem_nwr_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65e7): undefined reference to `bep_bem_nf_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65f2): undefined reference to `bep_bem_ngb_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x65fd): undefined reference to `bep_bem_nbui_max_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6608): undefined reference to `bep_bem_ngr_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6618): undefined reference to `bep_ndm_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6623): undefined reference to `bep_nz_um_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x662e): undefined reference to `bep_ng_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: module_check_a_mundo.f90:(.text+0x6639): undefined reference to `bep_nwr_u_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(init_modules.o): in function `init_modules_':
+init_modules.f90:(.text+0x5d): undefined reference to `init_modules_em_'
+/nopt/nrel/apps/cpu_stack/base/06-24/linux-rhel8-sapphirerapids/gcc-12.2.1/binutils-2.42-iycwtx3hbypbzv7pufvbajp7d4wjxr6t/bin/ld: libwrflib.a(start_domain.o): in function `start_domain_':
+start_domain.f90:(.text+0xcf5): undefined reference to `start_domain_em_'
+Command exited with non-zero status 1
+0.38user 0.33system 0:00.81elapsed 88%CPU (0avgtext+0avgdata 136580maxresident)k
+64568inputs+59328outputs (0major+64913minor)pagefaults 0swaps
+make[1]: [Makefile:29: em_ideal] Error 1 (ignored)
+make[1]: Leaving directory '/home/wradunz/WRFv4.4-DRM_GAD_william/main'
+( cd test/em_les ; /bin/rm -f wrf.exe ; ln -s ../../main/wrf.exe . )
+( cd test/em_les ; /bin/rm -f ideal.exe ; ln -s ../../main/ideal.exe . )
+( cd test/em_les ; /bin/rm -f README.namelist ; ln -s ../../run/README.namelist . )
+( cd run ; /bin/rm -f ideal.exe ; ln -s ../main/ideal.exe . )
+( cd run ; if test -f namelist.input ; then \
+	/bin/cp -f namelist.input namelist.input.backup.`date +%Y-%m-%d_%H_%M_%S` ; fi ; \
+	/bin/rm -f namelist.input ; cp ../test/em_les/namelist.input . )
+( cd run ; /bin/rm -f input_sounding ; ln -s ../test/em_les/input_sounding . )
+ 
+==========================================================================
+build started:   Thu Apr 10 10:49:35 MDT 2025
+build completed: Thu Apr 10 10:52:29 MDT 2025
+ 
+---> Problems building executables, look for errors in the build log  <---
+ 
+==========================================================================
+ 
+make[3]: *** Deleting file 'module_sf_clm.o'
+make[2]: [Makefile:249: physics] Hangup (ignored)
+make[1]: [Makefile:1027: physics] Hangup (ignored)
+make[3]: [../configure.wrf:385: module_sf_clm.o] Hangup (ignored)
+make: *** [Makefile:110: wrf] Hangup
