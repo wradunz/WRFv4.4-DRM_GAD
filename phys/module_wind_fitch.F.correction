@@ -85,7 +85,7 @@ CONTAINS
   REAL, DIMENSION(ims:ime,kms:kme,jms:jme), INTENT(IN) :: dz,u,v,z_at_w
   REAL, DIMENSION(ims:ime,kms:kme,jms:jme), INTENT(INOUT) :: du,dv,qke
   REAL, DIMENSION(ims:ime,jms:jme), INTENT(INOUT) :: power,thrust ! BAMS
-added
+
 !
 ! Local
 !

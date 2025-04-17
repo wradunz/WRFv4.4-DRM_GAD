@@ -16,3 +16,4 @@ s is the top-level .gitignore file for the WRF model                    #
 configure.wrf*
 *.backup
 *.f90
+main_*/        # Ignore any directory starting with "main_"
