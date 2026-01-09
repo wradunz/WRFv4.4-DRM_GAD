@@ -29,6 +29,7 @@ CONTAINS
                  ,znu, znw, mut, p_top                             &
 ! paj
                  ,ctopo,ctopo2,windfarm_opt,power                  &
+                 ,windfarm_wake_model, windfarm_overlap_method     &
                  ,ysu_topdown_pblmix                               &
                  ,shinhong_tke_diag                                &
               ! OPTIONAL for TEMF scheme
@@ -153,6 +154,7 @@ CONTAINS
                    CAMUWPBLSCHEME,BEPSCHEME,BEP_BEMSCHEME,MYJSFCSCHEME, &
                    FITCHSCHEME,SHINHONGSCHEME,                       &
                    TEMFPBLSCHEME,GBMPBLSCHEME,EEPSSCHEME,                  &
+                   MAVSCHEME,  & ! Yulong add for WLM
                    CAMMGMPSCHEME,p_qi,p_qni,p_qnc,param_first_scalar,& !CAMMGMPSCHEME, p_qni,p_qnc is used for camuwpbl scheme
                    p_qnwfa,p_qnifa,p_qnbca
 #if ( WRFPLUS == 1 )
@@ -165,6 +167,7 @@ CONTAINS
                    , TEMFPBLSCHEME, GFSEDMFSCHEME           &
                    , CAMUWPBLSCHEME                                       &
                    , FITCHSCHEME, SHINHONGSCHEME                          &
+                   , MAVSCHEME  ! Yulong add for WLM
                    , GBMPBLSCHEME, MYJSFCSCHEME
 #endif
 
@@ -195,6 +198,7 @@ CONTAINS
    USE module_bl_eeps
    USE module_bl_fogdes
    USE module_wind_fitch
+   USE module_wind_mav ! Yulong add for WLM
 #endif
 
    !  This driver calls subroutines for the PBL parameterizations.
@@ -429,6 +433,9 @@ CONTAINS
          INTENT(IN), OPTIONAL    :: phb
    REAL, DIMENSION( ims:ime, jms:jme ), &
          INTENT(IN), OPTIONAL    :: xlat_u,xlong_u,xlat_v,xlong_v
+
+! Yulong add for WLM
+   INTEGER,    INTENT(IN   )    ::     windfarm_wake_model, windfarm_overlap_method
 
    REAL,       DIMENSION( ims:ime, kms:kme ,jms:jme ),            &
                INTENT(IN), OPTIONAL    :: w
@@ -812,6 +819,8 @@ CONTAINS
    integer iu_bep,iurb,idiff
    real seamask,thsk,zzz,unew,vnew,tnew,qnew,umom,vmom
    REAL :: z0,z1,z2,w1,w2
+   
+   REAL, DIMENSION( ims:ime, kms:kme, jms:jme ) :: TKE_windfarm ! Yulong add for WLM
 !
 ! FASDAS
 !
@@ -2023,6 +2032,47 @@ CONTAINS
                      CALL wrf_debug(0,message)
                      CALL wrf_error_fatal('Lack arguments to call turbine_drag')
                   ENDIF
+
+      ! Yulong add new wind farm schemes with wind turbine loss effect
+      CASE (mavscheme)
+                  IF (PRESENT(id) .AND.                                  &
+                     PRESENT(z_at_w) ) THEN
+                     CALL wrf_debug(100,'in phys/module_wind_mav.F')
+                     CALL dragforce_mav(itimestep                     &
+                     &,ID=id                                             &
+                     &,Z_AT_W=z_at_w,z_at_m=z,u=u_phy,v=v_phy            &
+                     &,DX=dx,DZ=dz8w,DT=dt                               &
+                     &,TKE=TKE_windfarm                                  &
+                     &,DU=rublten,DV=rvblten                             &
+                     &,WINDFARM_OPT=windfarm_opt,POWER=power             &
+                     &,windfarm_wake_model=windfarm_wake_model           &
+                     &,windfarm_overlap_method=windfarm_overlap_method   &
+                     &,xland=xland                                       &
+                     &,cosa=cosa,sina=sina                               &
+                     &,IDS=ids,IDE=ide,JDS=jds,JDE=jde,KDS=kds,KDE=kde   &
+                     &,IMS=ims,IME=ime,JMS=jms,JME=jme,KMS=kms,KME=kme   &
+                     &,ITS=its,ITE=ite,JTS=jts,JTE=jte,KTS=kts,KTE=kte   &
+                     &)
+
+                     IF (bl_mynn_tkeadvect) THEN
+                        QKE = QKE + 2.*TKE_windfarm
+                        qke_adv=qke
+                     ENDIF
+
+                  ELSE
+                     WRITE ( message , FMT = '(A,6(L1,1X))' )           &
+                     'present: '//                                      &
+                     'ID, '//                                           &
+                     'z_at_w, '//                                       &
+                     'xlat_u, '//                                       &
+                     'xlong_u, '//                                      &
+                     'xlat_v, '//                                       &
+                     'xlong_v = ' ,                                     &
+                      PRESENT( id ) ,                                   &
+                      PRESENT( z_at_w )
+                     CALL wrf_debug(0,message)
+                     CALL wrf_error_fatal('Lack arguments to call dragforce_mav')
+                  ENDIF                 
 
    END SELECT windfarm_select
 #endif
