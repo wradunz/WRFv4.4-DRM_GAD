@@ -5,7 +5,8 @@ export NETCDF=/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelak
 
 export WRFIO_NCD_LARGE_FILE_SUPPORT=1
 export NETCDF_classic=1
-#export WRF_DIR=/home/wradunz/WRF-LES-GAD/framework/WRF
+
+# export WRF_DIR=/home/wradunz/WRFv4.6
 export WRF_DIR=/home/wradunz/WRFv4.4-DRM_GAD_william
 
 ############################ WRF 4.2.1 #################################
