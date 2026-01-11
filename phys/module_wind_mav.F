@@ -1974,12 +1974,12 @@ end subroutine shell_sort_1D
           close(71)
 
           ! reset wind farm center coordinate to (0,0)
-          xtb_center = sum(xturb(1:nt,id))/nt
-          ytb_center = sum(yturb(1:nt,id))/nt
-          do k = 1, nt
-              xturb(k,id) = xturb(k,id) - xtb_center
-              yturb(k,id) = yturb(k,id) - ytb_center
-          end do
+          !xtb_center = sum(xturb(1:nt,id))/nt
+          !ytb_center = sum(yturb(1:nt,id))/nt
+          !do k = 1, nt
+          !    xturb(k,id) = xturb(k,id) - xtb_center
+          !    yturb(k,id) = yturb(k,id) - ytb_center
+          !end do !WCR
 
           ! rotate wind farm
           deg = config_flags%windfarm_deg
@@ -1993,7 +1993,7 @@ end subroutine shell_sort_1D
 
           !!-------------- find ix, iy -----------------
           !igs = int(ide/2.5);   jgs = int(jde/2.5)  ! set wind farm center grid
-          igs = int(ide/3);   jgs = int(jde/3)  ! set wind farm right lower coner
+          !igs = int(ide/3);   jgs = int(jde/3)  ! set wind farm right lower coner
 
           do i = 1, ide
               xgrid(i) = (i-1)*dx
@@ -2003,7 +2003,8 @@ end subroutine shell_sort_1D
           end do
 
           do k = 1, nt
-              tmp = (igs-1)*dx + xturb(k,id)
+              !tmp = (igs-1)*dx + xturb(k,id)
+              tmp = xturb(k,id)
               do i = 1, ide-1
                   if (xgrid(i) <= tmp .and. xgrid(i+1) > tmp) then
                       ival(k,id) = i
@@ -2011,7 +2012,8 @@ end subroutine shell_sort_1D
                   end if
               end do
 
-              tmp = (jgs-1)*dx + yturb(k,id)
+              !tmp = (jgs-1)*dx + yturb(k,id)
+              tmp = yturb(k,id)
               do j = 1, jde-1
                   if (ygrid(j) <= tmp .and. ygrid(j+1) > tmp) then
                       jval(k,id) = j
