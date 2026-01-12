@@ -383,8 +383,8 @@ MODULE module_wind_mav
   power_nt = power_nt/num_models
 
   ! write fraction power of each turbine to a txt at 4 hr
-  !call write_power_txt(windfarm_wake_model, windfarm_overlap_method, itimestep, dt, its, jts, &
-  !                    dx, power_nt, power_nt_md, ulocal, nt, num_models)
+  call write_power_txt(windfarm_wake_model, windfarm_overlap_method, itimestep, dt, its, jts, & !WCR
+                      dx, power_nt, power_nt_md, ulocal, nt, num_models)
 
   end subroutine dragforce_mav
 
