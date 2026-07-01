@@ -404,7 +404,7 @@ MODULE module_wind_mav
   character(len=1024) :: fmt_my, str_my, fn_my
   real :: out_hr, max_power
 
-  out_hr = 4. ! hr
+  out_hr = 1./6. !WCR (10 min) 4. ! hr
 
   if (it_init == 0) it_init = itimestep
 
