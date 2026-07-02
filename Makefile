@@ -1068,13 +1068,15 @@ fseek_test :
 	@ cd tools ; /bin/rm -f fseeko64_test ; $(SCC) -DTEST_FSEEKO64 -o fseeko64_test fseek_test.c ; cd ..
 
 # rule used by configure to test if this will compile with netcdf4
+#nc4_test:
+#	if [ $(USENETCDFPAR) -eq 0 ] ; then \
+#	 ( cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(SCC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib -lnetcdf $(NETCDF4_DEP_LIB) ; cd .. ) ; \
+#	else \
+#	 ( cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(DM_CC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib -lnetcdf $(NETCDF4_DEP_LIB) ; cd ..  ) ; \
+#	fi
 nc4_test:
-	if [ $(USENETCDFPAR) -eq 0 ] ; then \
-	 ( cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(SCC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib -lnetcdf $(NETCDF4_DEP_LIB) ; cd .. ) ; \
-	else \
-	 ( cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(DM_CC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib -lnetcdf $(NETCDF4_DEP_LIB) ; cd ..  ) ; \
-	fi
-
+	@cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(SCC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib $(USENETCDF) ; cd ..
+	
 # rule used by configure to test if Fortran 2003 IEEE signaling is available
 fortran_2003_ieee_test:
 	@cd tools ; /bin/rm -f fortran_2003_ieee_test.{exe,o} ; $(SFC) -o fortran_2003_ieee_test.exe fortran_2003_ieee_test.F ; cd ..

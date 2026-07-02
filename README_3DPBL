@@ -1,0 +1,114 @@
+
+README_3DPBL
+
+Compiling WRF with 3DPBL parameterization on kestrel (09/06/2024)
+
+To use WRF with the most recent version of the 3DPBL scheme use git as follows:
+
+% git clone https://github.com/twjuliano/WRF.git
+
+You can list all the remote branches in this repository as follows:
+
+% cd WRF
+% git branch -r
+
+Then you can checkout the 3DPBL develop branch to your local repository as follows:
+
+% git checkout -b develop_3dpbl_on_top origin/develop_3dpbl_on_top
+
+Make sure that the develop_3dpbl_on_top is the active branch by issuing the command:
+
+% git branch
+
+The active branch will be denoted with a '*' infront of the name.
+
+After making sure that the correct branch is active modify Registry.EM_COMMON so
+that the line that defines package lesscheme looks like this:
+
+package   lesscheme      bl_pbl_physics==0           -             scalar:qke_adv;state:qke,tke_pbl,sh3d,tsq,qsq,cov,el_pbl
+
+Also comment out the lines in share/module_check_a_mundo.F checking for combining LESscheme and MYNNPBLSCHEME2(3) and EEPSSCHEME with LESschem as follows:
+
+!      IF ( ( exists ) .AND. &
+!           ( ( model_config_rec % bl_pbl_physics(1) .EQ. MYNNPBLSCHEME2 ) .OR. &
+!             ( model_config_rec % bl_pbl_physics(1) .EQ. MYNNPBLSCHEME3 ) .OR. &
+!             ( model_config_rec % bl_pbl_physics(1) .EQ. EEPSSCHEME     ) ) ) THEN
+!         WRITE(wrf_err_message,fmt='(a,i2)') '--- ERROR: LES PBL on fine grid does not work with CG PBL option ',model_config_rec % bl_pbl_physics(1)
+!         CALL wrf_message ( TRIM( wrf_err_message ) )
+!         wrf_err_message = '           Fix bl_pbl_physics in namelist.input: choose a CG PBL option without any scalar components'
+!         CALL wrf_message ( TRIM( wrf_err_message ) )
+!         wrf_err_message = '           Alternatively, remove all of the packaged variables from the CG PBL selection'
+!         CALL wrf_message ( TRIM( wrf_err_message ) )
+!         count_fatal_error = count_fatal_error + 1
+!      END IF 
+
+This will enable combining a PBL scheme that includes a prognostic equation for TKE on the outer domain with the LES or the 3DPBL scheme on the inner domain.
+
+After making modifications to the registry load the following modules and export 
+variables listed below.
+Create a shell script (e.g. loadm.sh) using the example bleow.
+
+#------------ cut here
+#!/bin/bash
+
+module --force purge
+module load anaconda3
+module load craype-x86-spr
+module load PrgEnv-intel
+module load perftools-base/22.12.0
+module load netcdf/4.9.2-intel-oneapi-mpi-intel
+module load hdf5/1.14.1-2-intel-oneapi-mpi-intel
+module load pnetcdf/1.12.2-intel
+module load intel-oneapi-mkl/2023.2.0-intel
+export OMP_NUM_THREADS=1
+export NETCDF=/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf
+export PATH="/nopt/nrel/apps/software/wrf/intel/installs/wps_dep_libs/bin":$PATH
+export WRF_EM_CORE=1
+
+module list
+#------------ cut here
+
+Load modules and define variables by executing the loadm.sh script as follows:
+% . ./loadm.sh
+
+After loading modules and defining variables check Makefile in the main (WRF) directory.
+If the Makefile includes the following nc4_test lines:
+
+## rule used by configure to test if this will compile with netcdf4
+#nc4_test:
+#       if [ $(USENETCDFPAR) -eq 0 ] ; then \
+#        ( cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(SCC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib -lnetcdf $(NETCDF4_DEP_LIB) ; cd .. ) ; \
+#       else \
+#        ( cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(DM_CC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib -lnetcdf $(NETCDF4_DEP_LIB) ; cd ..  ) ; \
+#       fi
+
+Comment these lines out and add the following line instead
+
+nc4_test:
+	@cd tools ; /bin/rm -f nc4_test.{exe,nc,o} ; $(SCC) -o nc4_test.exe nc4_test.c -I$(NETCDF)/include -L$(NETCDF)/lib $(USENETCDF) ; cd ..
+
+Notice that there is a <tab> before @cd and not blank spaces.
+This is necessary to avoid an error when configuring WRF and creating configure.wrf file.
+With this modification it will not be possible to use parallel netcdf output option.
+
+Configure WRF compilation by running 
+% ./configure
+and selecting option 
+15. (dmpar) INTEL
+
+Then modify configure.wrf by commenting out the existing DEP_LIB_PATH variable definition and
+add the new definition shown below. 
+This makes sure that the correct hdf library path and mkl library path are defined. The library mkl is intel math library required by 3DPBL for solving systems of linear equations using LU decomposition (based on LAPACK library).
+
+
+#DEP_LIB_PATH    = -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf-fortran-4.6.0-2ptt3qnjy5vtg5s4fvo7l5qyjomufnrt/lib
+
+DEP_LIB_PATH    = -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf-c-4.9.2-twcnffnqrckvlwqn7udxatwmyf26r6es/lib -lnetcdf -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf-fortran-4.6.0-2ptt3qnjy5vtg5s4fvo7l5qyjomufnrt/lib -lnetcdff -lnetcdf -lnetcdf -lm 
+
+Add the following line under definition of LIB_BUNDLED as follows:
+
+LIB_MKL         = -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/hdf5-1.14.1-2-x43jlkan4ddpbd3hq7rzntsdmrq4qery/lib -L/nopt/nrel/apps/cpu_stack/libraries-intel/06-24/linux-rhel8-sapphirerapids/oneapi-2024.1.0/intel-oneapi-mkl-2023.2.0-cxkmsrntwshafhfoubnmiimvx6mn7ofl/lib/intel64 -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lm
+
+and then add $(LIB_MKL) to the definition of LIB as follows:
+
+LIB             =    $(LIB_BUNDLED) $(LIB_EXTERNAL) $(LIB_LOCAL) $(LIB_MKL) $(LIB_WRF_HYDRO)
