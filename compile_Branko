@@ -1,0 +1,38 @@
+
+module --force purge
+module load anaconda3
+module load craype-x86-spr
+module load PrgEnv-intel
+module load perftools-base/22.12.0
+module load netcdf/4.9.2-intel-oneapi-mpi-intel
+module load hdf5/1.14.1-2-intel-oneapi-mpi-intel
+module load pnetcdf/1.12.2-intel
+module load intel-oneapi-mkl/2023.2.0-intel
+export OMP_NUM_THREADS=1
+export NETCDF=/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf
+export PATH="/nopt/nrel/apps/software/wrf/intel/installs/wps_dep_libs/bin":$PATH
+export WRF_EM_CORE=1
+
+# Configure WRF compilation by running 
+./clean
+./clean -a
+./configure
+and selecting option 15. (dmpar) INTEL
+
+# Then modify configure.wrf by commenting out the existing DEP_LIB_PATH variable definition and
+add the new definition shown below. 
+This makes sure that the correct hdf library path and mkl library path are defined. The library mkl is intel math library required by 3DPBL for solving systems of linear equations using LU decomposition (based on LAPACK library).
+
+#DEP_LIB_PATH    = -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf-fortran-4.6.0-2ptt3qnjy5vtg5s4fvo7l5qyjomufnrt/lib
+
+DEP_LIB_PATH    = -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf-c-4.9.2-twcnffnqrckvlwqn7udxatwmyf26r6es/lib -lnetcdf -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/netcdf-fortran-4.6.0-2ptt3qnjy5vtg5s4fvo7l5qyjomufnrt/lib -lnetcdff -lnetcdf -lnetcdf -lm 
+
+Add the following line under definition of LIB_BUNDLED as follows:
+
+LIB_MKL         = -L/nopt/nrel/apps/libraries/08-23/spack/opt/spack/linux-rhel8-icelake/intel-2021.10.0/hdf5-1.14.1-2-x43jlkan4ddpbd3hq7rzntsdmrq4qery/lib -L/nopt/nrel/apps/cpu_stack/libraries-intel/06-24/linux-rhel8-sapphirerapids/oneapi-2024.1.0/intel-oneapi-mkl-2023.2.0-cxkmsrntwshafhfoubnmiimvx6mn7ofl/lib/intel64 -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_sequential -lmkl_core -lm
+
+and then add $(LIB_MKL) to the definition of LIB as follows:
+
+LIB             =    $(LIB_BUNDLED) $(LIB_EXTERNAL) $(LIB_LOCAL) $(LIB_MKL) $(LIB_WRF_HYDRO)
+
+./compile em_les >& compile_em_les.log &
