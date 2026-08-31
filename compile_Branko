@@ -16,7 +16,8 @@ export WRF_EM_CORE=1
 # Configure WRF compilation by running 
 ./clean
 ./clean -a
-./configure
+# ./configure
+cp configure.wrf.branko configure.wrf
 and selecting option 15. (dmpar) INTEL
 
 # Then modify configure.wrf by commenting out the existing DEP_LIB_PATH variable definition and
