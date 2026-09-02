@@ -1090,7 +1090,7 @@ CHARACTER(LEN=8) :: name
    ktf=min0(kte,kde-1)
 
    ZZLND=0.1
-   ZZWTR=0.001 ! WES
+   ZZWTR=0.0001 ! Alex
    THINLD=0.04
    ALBLND=0.2
    XMAVA=0.3

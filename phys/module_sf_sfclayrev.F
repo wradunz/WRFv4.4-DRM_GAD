@@ -971,7 +971,7 @@ CONTAINS
       ENDIF
       DO i=its,ite
         QFX(i)=0.                                                              
-        HFX(i)=20.                                                              
+        HFX(i)=0.                                                              
       ENDDO
   350 CONTINUE                                                                   
 
