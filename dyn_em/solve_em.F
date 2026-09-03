@@ -2681,6 +2681,18 @@ BENCH_START(q_sq_prog_adv_tim)
        ENDIF Q_SQ_PROG_advance
 BENCH_END(q_sq_prog_adv_tim)
 
+!-----------------------------------------------------------------------
+! Synchronize prognostic 3DPBL TKE with qke_adv nesting carrier.
+! This allows 3DPBL parent TKE to be transferred to nested domains. !WCR
+!-----------------------------------------------------------------------
+IF ( config_flags%bl_pbl_physics == 0 .AND.                         &
+     ABS(config_flags%pbl3d_opt) > 0 .AND.                         &
+     config_flags%pbl3d_prog > 0 ) THEN
+
+   scalar(:,:,:,P_qke_adv) = grid%q_sq_prog_2
+
+ENDIF
+       
 #if (WRF_CHEM == 1)
 !  next the chemical species
 BENCH_START(chem_adv_tim)
