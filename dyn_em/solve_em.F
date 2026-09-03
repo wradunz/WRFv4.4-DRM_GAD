@@ -2576,6 +2576,56 @@ BENCH_START(q_sq_prog_adv_tim)
                             grid%i_start(ij), grid%i_end(ij), &
                             grid%j_start(ij), grid%j_end(ij), &
                             k_start    , k_end               )
+                            
+            !-----------------------------------------------------------------------
+            ! Apply nested lateral boundary conditions to prognostic 3DPBL TKE
+            ! using the existing qke_adv scalar boundary carrier. !WCR
+            !-----------------------------------------------------------------------
+
+           IF ( config_flags%nested .AND. rk_step == 1 ) THEN
+
+              CALL relax_bdy_scalar ( q_sq_prog_tend(ims,kms,jms),                     &
+                                      grid%q_sq_prog_2, grid%mut,                      &
+                                      grid%c1h, grid%c2h,                              &
+                                      scalar_bxs(jms,kms,1,P_qke_adv),                 &
+                                      scalar_bxe(jms,kms,1,P_qke_adv),                 &
+                                      scalar_bys(ims,kms,1,P_qke_adv),                 &
+                                      scalar_bye(ims,kms,1,P_qke_adv),                 &
+                                      scalar_btxs(jms,kms,1,P_qke_adv),                &
+                                      scalar_btxe(jms,kms,1,P_qke_adv),                &
+                                      scalar_btys(ims,kms,1,P_qke_adv),                &
+                                      scalar_btye(ims,kms,1,P_qke_adv),                &
+                                      config_flags%spec_bdy_width,                     &
+                                      grid%spec_zone, grid%relax_zone,                 &
+                                      grid%dtbc, grid%fcx, grid%gcx,                   &
+                                      config_flags,                                    &
+                                      ids,ide, jds,jde, kds,kde,                       &
+                                      ims,ime, jms,jme, kms,kme,                       &
+                                      ips,ipe, jps,jpe, kps,kpe,                       &
+                                      grid%i_start(ij), grid%i_end(ij),                &
+                                      grid%j_start(ij), grid%j_end(ij),                &
+                                      k_start, k_end )
+
+              CALL spec_bdy_scalar  ( q_sq_prog_tend(ims,kms,jms),                     &
+                                      scalar_bxs(jms,kms,1,P_qke_adv),                 &
+                                      scalar_bxe(jms,kms,1,P_qke_adv),                 &
+                                      scalar_bys(ims,kms,1,P_qke_adv),                 &
+                                      scalar_bye(ims,kms,1,P_qke_adv),                 &
+                                      scalar_btxs(jms,kms,1,P_qke_adv),                &
+                                      scalar_btxe(jms,kms,1,P_qke_adv),                &
+                                      scalar_btys(ims,kms,1,P_qke_adv),                &
+                                      scalar_btye(ims,kms,1,P_qke_adv),                &
+                                      config_flags%spec_bdy_width,                     &
+                                      grid%spec_zone,                                  &
+                                      config_flags,                                    &
+                                      ids,ide, jds,jde, kds,kde,                       &
+                                      ims,ime, jms,jme, kms,kme,                       &
+                                      ips,ipe, jps,jpe, kps,kpe,                       &
+                                      grid%i_start(ij), grid%i_end(ij),                &
+                                      grid%j_start(ij), grid%j_end(ij),                &
+                                      k_start, k_end )
+
+           ENDIF
 
          ENDDO q_sq_prog_tile_loop_1
          !$OMP END PARALLEL DO
@@ -2612,7 +2662,8 @@ BENCH_START(q_sq_prog_adv_tim)
                            grid%j_start(ij), grid%j_end(ij),    &
                            k_start    , k_end                  )
 
-           IF( config_flags%specified .or. config_flags%nested ) THEN
+!            IF( config_flags%specified .or. config_flags%nested ) THEN
+           IF( config_flags%specified .AND. .NOT. config_flags%nested ) THEN
               CALL flow_dep_bdy_q_sq (  grid%q_sq_prog_2,                     &
                                         grid%ru_m, grid%rv_m, config_flags,               &
                                         grid%spec_zone,                              &
